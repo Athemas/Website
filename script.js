@@ -312,7 +312,6 @@
 
   const recordingProjectItems = [
     {
-      src: 'videos/recording-1.mp4',
       poster: 'images/Henny en de Hamer.jpg',
       title: 'Henny en de Hamer',
       alt: 'Henny en de Hamer',
@@ -320,7 +319,6 @@
       desc: 'Currently in Post-Production.'
     },
     {
-      src: 'videos/recording-2.mp4',
       poster: 'images/Natte Tosti.jpg',
       title: 'Natte Tosti',
       alt: 'Natte Tosti',
@@ -328,7 +326,6 @@
       desc: 'Currently in Production'
     },
     {
-      src: 'videos/recording-2.mp4',
       poster: 'images/25 Dagen.jpg',
       title: '25 Dagen',
       alt: '25 Dagen',
@@ -336,7 +333,6 @@
       desc: 'Currently in Post-Production.'
     },
     {
-      src: 'videos/recording-2.mp4',
       poster: 'images/Titel Hier.jpg',
       title: 'Titel Hier',
       alt: 'Titel Hier',
