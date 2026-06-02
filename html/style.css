@@ -1,0 +1,295 @@
+/* Basic reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #eaeaea; background: #0b0b0b; }
+
+/* Intro (black fullscreen) */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+
+.pixel-bg {
+  position: absolute;   /* ← YOU WERE MISSING THIS */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  image-rendering: pixelated;
+  z-index: -1;
+}
+
+.intro-center {
+  text-align: center;
+  user-select: none;
+}
+
+.intro-title {
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  font-family: 'Orbitron', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.3rem;
+  color: #fff;
+}
+
+.intro-sub {
+  color: #999;
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* Main content starts after the 100vh intro */
+.main-content {
+  transform: translateY(0);
+  /* push content down visually so it starts after full viewport */
+  margin-top: 100vh;
+  background: transparent;
+  min-height: 200vh;
+}
+
+/* Hero */
+.hero {
+  padding: 6rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(255,255,255,0.02), transparent 10%),
+    radial-gradient(circle at 90% 90%, rgba(255,255,255,0.01), transparent 12%);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.hero-inner { max-width: 1000px; text-align: center; color: #f5f5f5; }
+.hero h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 0.5rem; }
+.hero p { color: #cfcfcf; font-size: 1.05rem; }
+
+/* Sections */
+.section { padding: calc(4rem + 4px) 1.25rem calc(4rem + 6px); color: #e6e6e6; }
+.section.dark { background: #e0e0e0; background-image: url('images/about-bg.gif'); background-size: cover; background-attachment: fixed; background-position: center; position: relative; }
+.section.dark::before { content: ''; position: absolute; inset: 0; background: rgba(26, 26, 31, 0.8); pointer-events: none; }
+.section.dark > * { position: relative; z-index: 1; }
+.section:not(.dark) { background: #121218; }
+.wrap { max-width: 1100px; margin: 0 auto; }
+.section:not(.dark) .wrap > h3 { text-align: center; }
+
+/* More button */
+.more-container { display: flex; justify-content: center; margin-top: 2rem; }
+.more-btn { display: inline-block; padding: 0.75rem 1.8rem; background: rgba(255,255,255,0.08); color: #fff; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); transition: all 300ms ease; font-size: 1rem; }
+.more-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); }
+
+/* Grid of cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* three columns across on wide screens */
+  gap: 1rem;
+  margin-top: 1.2rem;
+
+  /* make the grid stretch full-bleed edge-to-edge while still
+     keeping the content centered inside each card */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* Responsive: 2 columns on medium, 1 column on small screens */
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+}
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(3px);
+}
+
+/* Thumbnail inside card */
+.card-thumb {
+  width: 100%;
+  /* responsive height: scales with viewport but stays within readable bounds */
+  height: clamp(180px, 20vw, 360px);
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+.card-meta { margin-top: 0.6rem; }
+
+/* Viewer (large centered image) */
+.viewer {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+.viewer.active { display: flex; }
+.viewer-backdrop {
+  position: absolute; inset: 0; background: rgba(6,6,8,0.6); backdrop-filter: blur(6px);
+}
+
+/* Make the viewer full-bleed (covers viewport) */
+.viewer-inner {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* centered viewer box with fixed aspect (1024x620) but responsive */
+.viewer-box {
+  position: relative;
+  /* larger centered box: up to 1280px but responsive */
+  width: min(1280px, 96vw);
+  aspect-ratio: 1280 / 775; /* slightly larger box than before */
+  max-height: 96vh;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 100px rgba(0,0,0,0.6);
+}
+.viewer-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  transition: transform 1000ms cubic-bezier(0.2,0.8,0.2,1), opacity 500ms ease;
+}
+
+/* Caption bottom-left on the image */
+.viewer-caption {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  color: #fff;
+  z-index: 3002;
+  max-width: 70%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+.viewer-caption h4 { margin-bottom: 6px; font-size: 1.05rem; }
+.viewer-caption p { margin: 0; color: #ddd; font-size: 0.95rem; }
+
+/* Close button */
+#viewer-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 3003;
+}
+
+/* When viewer active, blur page behind and prevent scroll */
+body.viewer-active {
+  overflow: hidden;
+}
+body.viewer-active .main-content,
+body.viewer-active .hero,
+body.viewer-active .section,
+body.viewer-active .footer {
+  filter: blur(6px) saturate(0.95);
+  pointer-events: none;
+}
+
+/* Footer */
+.footer { padding: 2rem 1.25rem; text-align: center; color: #9a9a9a; border-top: 1px solid rgba(255,255,255,0.02); }
+
+/* Intro hidden state (applied by JS after scroll threshold) */
+.intro-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+}
+
+/* Scroll indicator (small arrow) */
+.scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 36px;
+  transform: translateX(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  z-index: 2;
+}
+.scroll-indicator:focus { outline: 2px solid rgba(255,255,255,0.12); border-radius: 20px; }
+
+.scroll-indicator .arrow {
+  width: 14px;
+  height: 14px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg);
+  display: inline-block;
+  opacity: 0.95;
+  animation: arrow-bounce 1.4s infinite;
+  margin-top: 2px;
+}
+
+@keyframes arrow-bounce {
+  0% { transform: rotate(45deg) translateY(0); opacity: 0.95; }
+  50% { transform: rotate(45deg) translateY(6px); opacity: 0.5; }
+  100% { transform: rotate(45deg) translateY(0); opacity: 0.95; }
+}
+
+/* subtle fade/shift for intro text */
+.intro-center {
+  text-align: center;
+  user-select: none;
+  transition: transform 360ms ease, opacity 360ms ease;
+}
+.intro-screen.intro-hidden .intro-center {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Visual debug indicator for the configured fade threshold */
+.threshold-indicator {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: 2000;
+  mix-blend-mode: screen;
+}
+.threshold-label {
+  position: fixed;
+  left: 12px;
+  transform: translateY(-110%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 2001;
+}
