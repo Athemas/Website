@@ -474,7 +474,9 @@ html { scroll-snap-type: none; }
 .project-video-frame { width:100%; max-width:100%; border:1px solid rgba(255,161,219,0.25); border-radius:16px; overflow:hidden; background: rgba(255,255,255,0.02); }
 .project-video-title-wrap { width:100%; border-bottom:1px solid rgba(255,161,219,0.25); background: rgba(255, 163, 220, 0.12); }
 .project-video-container { position:relative; }
-.project-media { text-align:left; width:100%; margin:0 auto; transition: transform 260ms ease, opacity 260ms ease; }
+.project-media { text-align:left; width:100%; margin:0 auto; transition: transform 260ms ease, opacity 260ms ease; position: relative; }
+.project-poster { width:100%; aspect-ratio: 1538 / 864; object-fit:cover; display:block; background:#000; }
+.project-media .project-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 .project-video-title { text-align:center; margin:0; width:100%; font-size:3rem; border:none; color:#ffffff; padding:0.85rem 1rem; }
 .project-video { width:100%; max-width:100%; aspect-ratio: 1538 / 864; background:#000; cursor:pointer; border-radius:0; overflow:hidden; display:block; }
 .project-controls { display:flex; flex-wrap:wrap; align-items:center; gap:0.65rem; padding:0.75rem 1rem; border-top:1px solid rgba(255,161,219,0.15); background: rgba(0,0,0,0.18); }

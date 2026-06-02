@@ -471,11 +471,26 @@
   function updateRecordingProjectContent(index, playOnLoad = false) {
     if (!recordingProjectVideo || !recordingProjectItems[index]) return;
     const item = recordingProjectItems[index];
+    
+    // Set the poster image
+    const posterImg = recordingProjectMedia ? recordingProjectMedia.querySelector('.project-poster') : null;
+    if (posterImg && item.poster) {
+      posterImg.src = item.poster;
+      posterImg.alt = item.alt || item.title || 'Project Poster';
+    }
+    
+    // Handle video iframe visibility
     if (item.youtubeId) {
       const youtubeUrl = `https://www.youtube.com/embed/${item.youtubeId}`;
       recordingProjectVideo.setAttribute('src', youtubeUrl);
       recordingProjectVideo.setAttribute('title', item.title);
+      recordingProjectVideo.style.display = 'block';
+    } else {
+      // No video - hide the iframe so poster shows through
+      recordingProjectVideo.setAttribute('src', '');
+      recordingProjectVideo.style.display = 'none';
     }
+    
     if (recordingProjectTitle) recordingProjectTitle.textContent = item.title;
     if (recordingProjectCategory) recordingProjectCategory.textContent = item.category || '';
     if (recordingProjectDesc) recordingProjectDesc.textContent = item.desc;
