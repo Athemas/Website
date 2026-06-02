@@ -298,7 +298,7 @@
       title: 'Licht',
       alt: 'Licht',
       category: 'Short Film',
-      desc: 'The sound design combines the religious themes of light with the radiation it can produce as while as the electricity which can create it. This combination creates a powerful and ominous soundscape that reflects the film’s themes of power, danger, and the unknown.'
+      desc: 'The sound design combines the religious themes of light with the radiation it can produce as while as the electricity which can create it. This combination creates a powerful and ominous soundscape that reflects the film's themes of power, danger, and the unknown.'
     },
     {
       youtubeId: 'Tt8j1GbDJOg',
@@ -401,10 +401,25 @@
   function updateProjectContent(index, playOnLoad = false) {
     if (!projectVideo || !projectItems[index]) return;
     const item = projectItems[index];
+    const posterEl = document.getElementById('project-poster');
+    
+    // Always set the poster
+    if (posterEl && item.poster) {
+      posterEl.setAttribute('src', item.poster);
+      posterEl.setAttribute('alt', item.alt || item.title);
+    }
+    
+    // Set video source if available
     if (item.youtubeId) {
       const youtubeUrl = `https://www.youtube.com/embed/${item.youtubeId}`;
       projectVideo.setAttribute('src', youtubeUrl);
       projectVideo.setAttribute('title', item.title);
+    } else if (item.vimeoId) {
+      const vimeoUrl = `https://player.vimeo.com/video/${item.vimeoId}?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`;
+      projectVideo.setAttribute('src', vimeoUrl);
+      projectVideo.setAttribute('title', item.title);
+    } else {
+      projectVideo.setAttribute('src', '');
     }
     const titleEl = document.querySelector('.project-video-title'); if (titleEl) titleEl.textContent = item.title;
     const categoryEl = document.querySelector('.project-category'); if (categoryEl) categoryEl.textContent = item.category || '';
@@ -471,10 +486,25 @@
   function updateRecordingProjectContent(index, playOnLoad = false) {
     if (!recordingProjectVideo || !recordingProjectItems[index]) return;
     const item = recordingProjectItems[index];
+    const posterEl = document.getElementById('recording-project-poster');
+    
+    // Always set the poster
+    if (posterEl && item.poster) {
+      posterEl.setAttribute('src', item.poster);
+      posterEl.setAttribute('alt', item.alt || item.title);
+    }
+    
+    // Set video source if available
     if (item.youtubeId) {
       const youtubeUrl = `https://www.youtube.com/embed/${item.youtubeId}`;
       recordingProjectVideo.setAttribute('src', youtubeUrl);
       recordingProjectVideo.setAttribute('title', item.title);
+    } else if (item.vimeoId) {
+      const vimeoUrl = `https://player.vimeo.com/video/${item.vimeoId}?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`;
+      recordingProjectVideo.setAttribute('src', vimeoUrl);
+      recordingProjectVideo.setAttribute('title', item.title);
+    } else {
+      recordingProjectVideo.setAttribute('src', '');
     }
     if (recordingProjectTitle) recordingProjectTitle.textContent = item.title;
     if (recordingProjectCategory) recordingProjectCategory.textContent = item.category || '';
