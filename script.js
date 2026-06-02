@@ -485,6 +485,12 @@
       recordingProjectVideo.setAttribute('src', youtubeUrl);
       recordingProjectVideo.setAttribute('title', item.title);
       recordingProjectVideo.style.display = 'block';
+      // Position iframe absolutely over the poster
+      recordingProjectVideo.style.position = 'absolute';
+      recordingProjectVideo.style.top = '0';
+      recordingProjectVideo.style.left = '0';
+      recordingProjectVideo.style.width = '100%';
+      recordingProjectVideo.style.height = '100%';
     } else {
       // No video - hide the iframe so poster shows through
       recordingProjectVideo.setAttribute('src', '');
