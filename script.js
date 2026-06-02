@@ -277,7 +277,7 @@
 
   const projectItems = [
     {
-      src: 'videos/Waar Het Stil Wordt.mp4',
+      youtubeId: '_QiZwGyCAWM',
       poster: 'images/Waar Het Stil Wordt.png',
       title: 'Waar Het Stil Wordt',
       alt: 'Waar Het Stil Wordt',
@@ -285,7 +285,7 @@
       desc: 'Currently in Post-Production. The sound design emphasises the peaceful nature of the ocean, while also showing the power that it holds.'
     },
     {
-      src: 'videos/Alice.mp4',
+      youtubeId: 'FWcGBk-DW-g',
       poster: 'images/Alice.png',
       title: 'Alice',
       alt: 'Alice',
@@ -293,7 +293,7 @@
       desc: 'The sound design conveys the freezing of time, with the dread to move forward.'
     },
     {
-      src: 'videos/Licht Short.mp4',
+      youtubeId: 'jwI6lVz4-OU',
       poster: 'images/Licht.png',
       title: 'Licht',
       alt: 'Licht',
@@ -301,7 +301,7 @@
       desc: 'The sound design combines the religious themes of light with the radiation it can produce as while as the electricity which can create it. This combination creates a powerful and ominous soundscape that reflects the film’s themes of power, danger, and the unknown.'
     },
     {
-      src: 'videos/Textiel Fabriek.mp4',
+      youtubeId: 'Tt8j1GbDJOg',
       poster: 'images/Textiel Fabriek.png',
       title: 'Textiel Fabriek',
       alt: 'Textiel Fabriek',
@@ -405,10 +405,11 @@
   function updateProjectContent(index, playOnLoad = false) {
     if (!projectVideo || !projectItems[index]) return;
     const item = projectItems[index];
-    const sourceEl = projectVideo.querySelector('source');
-    if (sourceEl) sourceEl.src = item.src;
-    if (item.poster) projectVideo.poster = item.poster;
-    projectVideo.load();
+    if (item.youtubeId) {
+      const youtubeUrl = `https://www.youtube.com/embed/${item.youtubeId}`;
+      projectVideo.setAttribute('src', youtubeUrl);
+      projectVideo.setAttribute('title', item.title);
+    }
     const titleEl = document.querySelector('.project-video-title'); if (titleEl) titleEl.textContent = item.title;
     const categoryEl = document.querySelector('.project-category'); if (categoryEl) categoryEl.textContent = item.category || '';
     const altEl = document.querySelector('.project-alt'); if (altEl) altEl.textContent = item.alt;
@@ -416,8 +417,7 @@
     currentProjectIndex = index;
     updateProjectButtons(index);
     requestAnimationFrame(syncArrowHeight);
-    if (playOnLoad) {
-      projectVideo.muted = false;
+  }
       projectVideo.play().catch(() => {});
     }
   }
@@ -478,20 +478,17 @@
   function updateRecordingProjectContent(index, playOnLoad = false) {
     if (!recordingProjectVideo || !recordingProjectItems[index]) return;
     const item = recordingProjectItems[index];
-    const sourceEl = recordingProjectVideo.querySelector('source');
-    if (sourceEl) sourceEl.src = item.src;
-    if (item.poster) recordingProjectVideo.poster = item.poster;
-    recordingProjectVideo.load();
+    if (item.youtubeId) {
+      const youtubeUrl = `https://www.youtube.com/embed/${item.youtubeId}`;
+      recordingProjectVideo.setAttribute('src', youtubeUrl);
+      recordingProjectVideo.setAttribute('title', item.title);
+    }
     if (recordingProjectTitle) recordingProjectTitle.textContent = item.title;
     if (recordingProjectCategory) recordingProjectCategory.textContent = item.category || '';
     if (recordingProjectDesc) recordingProjectDesc.textContent = item.desc;
     currentRecordingProjectIndex = index;
     updateRecordingProjectButtons(index);
     requestAnimationFrame(recordingSyncArrowHeight);
-    if (playOnLoad) {
-      recordingProjectVideo.muted = false;
-      recordingProjectVideo.play().catch(() => {});
-    }
   }
 
   function setRecordingProjectVideo(index, playOnLoad = false, direction = 'next') {
