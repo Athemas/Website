@@ -418,9 +418,6 @@
     updateProjectButtons(index);
     requestAnimationFrame(syncArrowHeight);
   }
-      projectVideo.play().catch(() => {});
-    }
-  }
 
   function setProjectVideo(index, playOnLoad = false, direction = 'next') {
     if (!projectVideo || !projectItems[index]) return;
@@ -525,70 +522,15 @@
   }
 
   if (recordingProjectPlayPause) {
-    recordingProjectPlayPause.addEventListener('click', function () {
-      if (!recordingProjectVideo) return;
-      if (recordingProjectVideo.paused || recordingProjectVideo.ended) {
-        recordingProjectVideo.play().catch(() => {});
-      } else {
-        recordingProjectVideo.pause();
-      }
-      recordingProjectTime.textContent = `${formatTime(recordingProjectVideo.currentTime || 0)} / ${formatTime(recordingProjectVideo.duration || 0)}`;
-      recordingProjectPlayPause.textContent = recordingProjectVideo.paused || recordingProjectVideo.ended ? 'Play' : 'Pause';
-    });
+    // YouTube iframe handles its own play/pause controls
   }
 
   if (recordingProjectProgress) {
-    recordingProjectProgress.addEventListener('input', function () {
-      if (!recordingProjectVideo || !recordingProjectVideo.duration) return;
-      const percent = parseFloat(recordingProjectProgress.value);
-      recordingProjectVideo.currentTime = (percent / 100) * recordingProjectVideo.duration;
-      recordingProjectProgress.style.background = `linear-gradient(to right, rgba(255,129,214,0.95) 0%, rgba(255,129,214,0.95) ${percent}%, rgba(255,255,255,0.1) ${percent}%, rgba(255,255,255,0.1) 100%)`;
-      recordingProjectTime.textContent = `${formatTime(recordingProjectVideo.currentTime || 0)} / ${formatTime(recordingProjectVideo.duration || 0)}`;
-    });
+    // YouTube iframe handles its own progress bar
   }
 
   if (recordingProjectVolume) {
-    recordingProjectVolume.addEventListener('input', function () {
-      if (!recordingProjectVideo) return;
-      const volume = parseFloat(recordingProjectVolume.value);
-      recordingProjectVideo.volume = Number.isFinite(volume) ? volume : 1;
-      if (recordingProjectVideo.volume > 0) recordingProjectVideo.muted = false;
-    });
-  }
-
-  if (recordingProjectVideo) {
-    recordingProjectVideo.addEventListener('loadedmetadata', function () {
-      recordingSyncArrowHeight();
-      recordingProjectTime.textContent = `${formatTime(recordingProjectVideo.currentTime || 0)} / ${formatTime(recordingProjectVideo.duration || 0)}`;
-    });
-    recordingProjectVideo.addEventListener('timeupdate', function () {
-      const duration = recordingProjectVideo.duration || 0;
-      const currentTime = recordingProjectVideo.currentTime || 0;
-      const percent = duration ? (currentTime / duration) * 100 : 0;
-      if (recordingProjectProgress) {
-        recordingProjectProgress.value = percent;
-        recordingProjectProgress.style.background = `linear-gradient(to right, rgba(255,129,214,0.95) 0%, rgba(255,129,214,0.95) ${percent}%, rgba(255,255,255,0.1) ${percent}%, rgba(255,255,255,0.1) 100%)`;
-      }
-      if (recordingProjectTime) {
-        recordingProjectTime.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
-      }
-    });
-    recordingProjectVideo.addEventListener('pause', function () {
-      if (recordingProjectPlayPause) recordingProjectPlayPause.textContent = 'Play';
-    });
-    recordingProjectVideo.addEventListener('play', function () {
-      if (recordingProjectPlayPause) recordingProjectPlayPause.textContent = 'Pause';
-    });
-    recordingProjectVideo.addEventListener('ended', function () {
-      if (recordingProjectPlayPause) recordingProjectPlayPause.textContent = 'Play';
-    });
-    recordingProjectVideo.addEventListener('click', function () {
-      if (recordingProjectVideo.paused) {
-        recordingProjectVideo.play().catch(() => {});
-      } else {
-        recordingProjectVideo.pause();
-      }
-    });
+    // YouTube iframe handles its own volume controls
   }
 
   if (recordingProjectVideo && recordingProjectWrapper) {
@@ -611,75 +553,21 @@
   }
 
   if (projectPlayPause) {
-    projectPlayPause.addEventListener('click', function () {
-      if (!projectVideo) return;
-      if (projectVideo.paused || projectVideo.ended) {
-        projectVideo.play().catch(() => {});
-      } else {
-        projectVideo.pause();
-      }
-      updateProjectControls();
-    });
+    // YouTube iframe handles its own play/pause controls
   }
 
   if (projectProgress) {
-    projectProgress.addEventListener('input', function () {
-      if (!projectVideo || !projectVideo.duration) return;
-      const percent = parseFloat(projectProgress.value);
-      projectVideo.currentTime = (percent / 100) * projectVideo.duration;
-      updateProgressBackground(percent);
-      updateProjectControls();
-    });
+    // YouTube iframe handles its own progress bar
   }
 
   if (projectVolume) {
-    projectVolume.addEventListener('input', function () {
-      if (!projectVideo) return;
-      const volume = parseFloat(projectVolume.value);
-      projectVideo.volume = Number.isFinite(volume) ? volume : 1;
-      if (projectVideo.volume > 0) projectVideo.muted = false;
-      updateProjectControls();
-    });
+    // YouTube iframe handles its own volume controls
   }
 
   setProjectVideo(currentProjectIndex, false);
   window.addEventListener('resize', function () { requestAnimationFrame(syncArrowHeight); });
-  if (projectVideo) {
-    projectVideo.addEventListener('loadedmetadata', function () {
-      syncArrowHeight();
-      updateProjectControls();
-    });
-    projectVideo.addEventListener('timeupdate', updateProjectControls);
-    projectVideo.addEventListener('pause', updateProjectControls);
-    projectVideo.addEventListener('play', updateProjectControls);
-    projectVideo.addEventListener('ended', updateProjectControls);
-  }
-
-  if (projectVideo) {
-    projectVideo.addEventListener('play', () => {
-      if (introVideo && !introVideo.paused) {
-        introWasPlaying = true;
-        introVideo.pause();
-      } else {
-        introWasPlaying = false;
-      }
-    });
-
-    projectVideo.addEventListener('ended', () => {
-      if (introVideo && introWasPlaying) {
-        introVideo.play().catch(() => {});
-      }
-    });
-
-    projectVideo.addEventListener('click', () => {
-      if (projectVideo.paused) {
-        projectVideo.muted = false;
-        projectVideo.play().catch(() => {});
-      } else {
-        projectVideo.pause();
-      }
-    });
-  }
+  
+  // YouTube iframe handles all its own events and controls
 
   /* ---- Image viewer: open card in center and blur rest ---- */
   const viewer = document.createElement('div');
