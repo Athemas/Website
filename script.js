@@ -276,28 +276,32 @@
   const projectVolume = document.getElementById('project-volume-control');
 
   const projectItems = [
-      youtubeId: '_QiZwGyCAWM',
+    {
+      src: 'videos/Waar Het Stil Wordt.mp4',
       poster: 'images/Waar Het Stil Wordt.png',
       title: 'Waar Het Stil Wordt',
       alt: 'Waar Het Stil Wordt',
       category: 'Documentary',
       desc: 'Currently in Post-Production. The sound design emphasises the peaceful nature of the ocean, while also showing the power that it holds.'
     },
-      youtubeId: 'FWcGBk-DW-g',
+    {
+      src: 'videos/Alice.mp4',
       poster: 'images/Alice.png',
       title: 'Alice',
       alt: 'Alice',
       category: 'Short Film',
       desc: 'The sound design conveys the freezing of time, with the dread to move forward.'
     },
-      youtubeId: 'jwI6lVz4-OU',
+    {
+      src: 'videos/Licht Short.mp4',
       poster: 'images/Licht.png',
       title: 'Licht',
       alt: 'Licht',
       category: 'Short Film',
       desc: 'The sound design combines the religious themes of light with the radiation it can produce as while as the electricity which can create it. This combination creates a powerful and ominous soundscape that reflects the film’s themes of power, danger, and the unknown.'
     },
-      youtubeId: 'Tt8j1GbDJOg',
+    {
+      src: 'videos/Textiel Fabriek.mp4',
       poster: 'images/Textiel Fabriek.png',
       title: 'Textiel Fabriek',
       alt: 'Textiel Fabriek',
@@ -351,6 +355,42 @@
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   }
 
+  function updateProgressBackground(percent) {
+    if (!projectProgress) return;
+    projectProgress.style.background = `linear-gradient(to right, rgba(255,129,214,0.95) 0%, rgba(255,129,214,0.95) ${percent}%, rgba(255,255,255,0.1) ${percent}%, rgba(255,255,255,0.1) 100%)`;
+  }
+
+  function updateProjectControls() {
+    if (!projectVideo) return;
+    const duration = projectVideo.duration || 0;
+    const currentTime = projectVideo.currentTime || 0;
+    const percent = duration ? (currentTime / duration) * 100 : 0;
+    if (projectProgress) {
+      projectProgress.max = duration ? '100' : '0';
+      projectProgress.value = percent;
+      updateProgressBackground(percent);
+    }
+    if (projectTime) {
+      projectTime.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+    }
+    if (projectPlayPause) {
+      projectPlayPause.textContent = projectVideo.paused || projectVideo.ended ? 'Play' : 'Pause';
+      projectPlayPause.setAttribute('aria-label', projectVideo.paused || projectVideo.ended ? 'Play project video' : 'Pause project video');
+    }
+    if (projectVolume) {
+      const volumeValue = Number.isFinite(projectVideo.volume) ? projectVideo.volume : 1;
+      if (projectVolume.value !== String(volumeValue)) projectVolume.value = String(volumeValue);
+    }
+  }
+
+  function updateProjectButtons(index) {
+    const prevIndex = (index - 1 + projectItems.length) % projectItems.length;
+    const nextIndex = (index + 1) % projectItems.length;
+    if (projectPrev) projectPrev.dataset.targetIndex = String(prevIndex);
+    if (projectNext) projectNext.dataset.targetIndex = String(nextIndex);
+    if (projectContainer) projectContainer.dataset.current = String(index);
+  }
+
   function syncArrowHeight() {
     if (!projectVideo) return;
     const videoRect = projectVideo.getBoundingClientRect();
@@ -365,10 +405,10 @@
   function updateProjectContent(index, playOnLoad = false) {
     if (!projectVideo || !projectItems[index]) return;
     const item = projectItems[index];
-    if (item.youtubeId) {
-      projectVideo.src = `https://www.youtube.com/embed/${item.youtubeId}`;
-      projectVideo.title = item.title;
-    }
+    const sourceEl = projectVideo.querySelector('source');
+    if (sourceEl) sourceEl.src = item.src;
+    if (item.poster) projectVideo.poster = item.poster;
+    projectVideo.load();
     const titleEl = document.querySelector('.project-video-title'); if (titleEl) titleEl.textContent = item.title;
     const categoryEl = document.querySelector('.project-category'); if (categoryEl) categoryEl.textContent = item.category || '';
     const altEl = document.querySelector('.project-alt'); if (altEl) altEl.textContent = item.alt;
@@ -376,6 +416,10 @@
     currentProjectIndex = index;
     updateProjectButtons(index);
     requestAnimationFrame(syncArrowHeight);
+    if (playOnLoad) {
+      projectVideo.muted = false;
+      projectVideo.play().catch(() => {});
+    }
   }
 
   function setProjectVideo(index, playOnLoad = false, direction = 'next') {
@@ -434,16 +478,20 @@
   function updateRecordingProjectContent(index, playOnLoad = false) {
     if (!recordingProjectVideo || !recordingProjectItems[index]) return;
     const item = recordingProjectItems[index];
-    if (item.youtubeId) {
-      recordingProjectVideo.src = `https://www.youtube.com/embed/${item.youtubeId}`;
-      recordingProjectVideo.title = item.title;
-    }
+    const sourceEl = recordingProjectVideo.querySelector('source');
+    if (sourceEl) sourceEl.src = item.src;
+    if (item.poster) recordingProjectVideo.poster = item.poster;
+    recordingProjectVideo.load();
     if (recordingProjectTitle) recordingProjectTitle.textContent = item.title;
     if (recordingProjectCategory) recordingProjectCategory.textContent = item.category || '';
     if (recordingProjectDesc) recordingProjectDesc.textContent = item.desc;
     currentRecordingProjectIndex = index;
     updateRecordingProjectButtons(index);
     requestAnimationFrame(recordingSyncArrowHeight);
+    if (playOnLoad) {
+      recordingProjectVideo.muted = false;
+      recordingProjectVideo.play().catch(() => {});
+    }
   }
 
   function setRecordingProjectVideo(index, playOnLoad = false, direction = 'next') {
@@ -481,19 +529,68 @@
 
   if (recordingProjectPlayPause) {
     recordingProjectPlayPause.addEventListener('click', function () {
-      // YouTube iframes handle their own play/pause
+      if (!recordingProjectVideo) return;
+      if (recordingProjectVideo.paused || recordingProjectVideo.ended) {
+        recordingProjectVideo.play().catch(() => {});
+      } else {
+        recordingProjectVideo.pause();
+      }
+      recordingProjectTime.textContent = `${formatTime(recordingProjectVideo.currentTime || 0)} / ${formatTime(recordingProjectVideo.duration || 0)}`;
+      recordingProjectPlayPause.textContent = recordingProjectVideo.paused || recordingProjectVideo.ended ? 'Play' : 'Pause';
     });
   }
 
   if (recordingProjectProgress) {
     recordingProjectProgress.addEventListener('input', function () {
-      // YouTube iframes handle their own progress
+      if (!recordingProjectVideo || !recordingProjectVideo.duration) return;
+      const percent = parseFloat(recordingProjectProgress.value);
+      recordingProjectVideo.currentTime = (percent / 100) * recordingProjectVideo.duration;
+      recordingProjectProgress.style.background = `linear-gradient(to right, rgba(255,129,214,0.95) 0%, rgba(255,129,214,0.95) ${percent}%, rgba(255,255,255,0.1) ${percent}%, rgba(255,255,255,0.1) 100%)`;
+      recordingProjectTime.textContent = `${formatTime(recordingProjectVideo.currentTime || 0)} / ${formatTime(recordingProjectVideo.duration || 0)}`;
     });
   }
 
   if (recordingProjectVolume) {
     recordingProjectVolume.addEventListener('input', function () {
-      // YouTube iframes handle their own volume
+      if (!recordingProjectVideo) return;
+      const volume = parseFloat(recordingProjectVolume.value);
+      recordingProjectVideo.volume = Number.isFinite(volume) ? volume : 1;
+      if (recordingProjectVideo.volume > 0) recordingProjectVideo.muted = false;
+    });
+  }
+
+  if (recordingProjectVideo) {
+    recordingProjectVideo.addEventListener('loadedmetadata', function () {
+      recordingSyncArrowHeight();
+      recordingProjectTime.textContent = `${formatTime(recordingProjectVideo.currentTime || 0)} / ${formatTime(recordingProjectVideo.duration || 0)}`;
+    });
+    recordingProjectVideo.addEventListener('timeupdate', function () {
+      const duration = recordingProjectVideo.duration || 0;
+      const currentTime = recordingProjectVideo.currentTime || 0;
+      const percent = duration ? (currentTime / duration) * 100 : 0;
+      if (recordingProjectProgress) {
+        recordingProjectProgress.value = percent;
+        recordingProjectProgress.style.background = `linear-gradient(to right, rgba(255,129,214,0.95) 0%, rgba(255,129,214,0.95) ${percent}%, rgba(255,255,255,0.1) ${percent}%, rgba(255,255,255,0.1) 100%)`;
+      }
+      if (recordingProjectTime) {
+        recordingProjectTime.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+      }
+    });
+    recordingProjectVideo.addEventListener('pause', function () {
+      if (recordingProjectPlayPause) recordingProjectPlayPause.textContent = 'Play';
+    });
+    recordingProjectVideo.addEventListener('play', function () {
+      if (recordingProjectPlayPause) recordingProjectPlayPause.textContent = 'Pause';
+    });
+    recordingProjectVideo.addEventListener('ended', function () {
+      if (recordingProjectPlayPause) recordingProjectPlayPause.textContent = 'Play';
+    });
+    recordingProjectVideo.addEventListener('click', function () {
+      if (recordingProjectVideo.paused) {
+        recordingProjectVideo.play().catch(() => {});
+      } else {
+        recordingProjectVideo.pause();
+      }
     });
   }
 
@@ -519,24 +616,73 @@
   if (projectPlayPause) {
     projectPlayPause.addEventListener('click', function () {
       if (!projectVideo) return;
-      // YouTube iframes handle their own play/pause
+      if (projectVideo.paused || projectVideo.ended) {
+        projectVideo.play().catch(() => {});
+      } else {
+        projectVideo.pause();
+      }
+      updateProjectControls();
     });
   }
 
   if (projectProgress) {
     projectProgress.addEventListener('input', function () {
-      // YouTube iframes handle their own progress
+      if (!projectVideo || !projectVideo.duration) return;
+      const percent = parseFloat(projectProgress.value);
+      projectVideo.currentTime = (percent / 100) * projectVideo.duration;
+      updateProgressBackground(percent);
+      updateProjectControls();
     });
   }
 
   if (projectVolume) {
     projectVolume.addEventListener('input', function () {
-      // YouTube iframes handle their own volume
+      if (!projectVideo) return;
+      const volume = parseFloat(projectVolume.value);
+      projectVideo.volume = Number.isFinite(volume) ? volume : 1;
+      if (projectVideo.volume > 0) projectVideo.muted = false;
+      updateProjectControls();
     });
   }
 
   setProjectVideo(currentProjectIndex, false);
   window.addEventListener('resize', function () { requestAnimationFrame(syncArrowHeight); });
+  if (projectVideo) {
+    projectVideo.addEventListener('loadedmetadata', function () {
+      syncArrowHeight();
+      updateProjectControls();
+    });
+    projectVideo.addEventListener('timeupdate', updateProjectControls);
+    projectVideo.addEventListener('pause', updateProjectControls);
+    projectVideo.addEventListener('play', updateProjectControls);
+    projectVideo.addEventListener('ended', updateProjectControls);
+  }
+
+  if (projectVideo) {
+    projectVideo.addEventListener('play', () => {
+      if (introVideo && !introVideo.paused) {
+        introWasPlaying = true;
+        introVideo.pause();
+      } else {
+        introWasPlaying = false;
+      }
+    });
+
+    projectVideo.addEventListener('ended', () => {
+      if (introVideo && introWasPlaying) {
+        introVideo.play().catch(() => {});
+      }
+    });
+
+    projectVideo.addEventListener('click', () => {
+      if (projectVideo.paused) {
+        projectVideo.muted = false;
+        projectVideo.play().catch(() => {});
+      } else {
+        projectVideo.pause();
+      }
+    });
+  }
 
   /* ---- Image viewer: open card in center and blur rest ---- */
   const viewer = document.createElement('div');
