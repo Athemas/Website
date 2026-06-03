@@ -23,6 +23,16 @@ html { scroll-snap-type: none; }
   flex-shrink: 0;
 }
 
+.intro-ui {
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.intro-ui.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
 .project-screen{
   position: fixed;
   inset: 0;
