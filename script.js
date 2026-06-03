@@ -261,23 +261,6 @@
     });
   }
 
-const intro = document.getElementById("intro");
-const trigger = document.querySelector(".section section-sound-design");
-
-if (intro && trigger) {
-  const observer = new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) {
-      intro.classList.add("hidden-intro");
-    } else {
-      intro.classList.remove("hidden-intro");
-    }
-  }, {
-    threshold: 0.3
-  });
-
-  observer.observe(trigger);
-}
-
   // Project video player: pause intro audio while playing, provide prev/next hooks
 
   // Project video player: pause intro audio while playing, provide prev/next hooks
