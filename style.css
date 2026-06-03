@@ -119,6 +119,7 @@ html { scroll-snap-type: none; }
 }
 
 .intro-action-btn {
+  font-family: "Rajdhani", sans-serif;
   padding: 0.85rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
@@ -306,7 +307,39 @@ html { scroll-snap-type: none; }
   color: #fff;
 }
 
+.rajdhani-light {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.rajdhani-regular {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rajdhani-medium {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.rajdhani-semibold {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.rajdhani-bold {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 .intro-sub {
+  font-family: "Rajdhani", sans-serif;
   color: #999;
   margin-top: 0.4rem;
   font-size: 0.95rem;
