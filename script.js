@@ -77,8 +77,16 @@
 
   // onScroll no-op: do not fade or hide the intro while scrolling.
   function onScroll() {
-    lastY = window.scrollY || document.documentElement.scrollTop;
+  const y = window.scrollY || document.documentElement.scrollTop;
+
+  if (y > fadePoint) {
+    intro.classList.add('intro-hidden');
+  } else {
+    intro.classList.remove('intro-hidden');
   }
+}
+
+window.addEventListener('scroll', onScroll);
 
   // Allow immediate removal on wheel/key/touch for discoverability
   function onUserInteract() {
@@ -732,13 +740,12 @@
   }
 
   // If large image fails to load, fallback to thumbnail src (if available)
-  viewerImg.addEventListener('error', function () {
-    if (lastThumbSrc) {
-      console.warn('Large image failed to load, falling back to thumbnail');
-      viewerImg.removeEventListener('error', arguments.callee);
-      viewerImg.src = lastThumbSrc;
-    }
-  });
+  function onViewerError() {
+    if (lastThumbSrc) viewerImg.src = lastThumbSrc;
+    viewerImg.removeEventListener('error', onViewerError);
+  }
+  
+  viewerImg.addEventListener('error', onViewerError);
 
   viewerClose.addEventListener('click', closeViewer);
   viewer.querySelector('[data-role="backdrop"]').addEventListener('click', closeViewer);
