@@ -418,7 +418,7 @@ html { scroll-snap-type: none; }
   transform: translateY(0);
   position: relative;
   z-index: 1;
-  margin-top: 0;
+  margin-top: 100vh;
   background: transparent;
   background-position: center;
   background-attachment: fixed;
@@ -453,8 +453,7 @@ html { scroll-snap-type: none; }
 .hero p { color: #cfcfcf; font-size: 1.05rem; }
 
 /* Sections */
-.section { padding: calc(3rem + 4px) 1.25rem calc(7rem + 6px); color: #e6e6e6;
-           backdrop-filter: blur(2px); }
+.section { padding: calc(3rem + 4px) 1.25rem calc(7rem + 6px); color: #e6e6e6;}
 .section.dark { background: #e0e0e0; background-image: url('images/about-bg.gif'); 
   background-size: cover; 
   background-attachment: fixed; 
