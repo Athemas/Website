@@ -75,19 +75,9 @@
     window.removeEventListener('resize', positionThreshold);
   }
 
-  // Scroll distance threshold: 10rem = 160px (at 16px base font size)
-  const SCROLL_FADE_THRESHOLD = 500;
-  
-  // onScroll: track scroll position and fade intro content when scrolled 10rem down
+  // onScroll no-op: do not fade or hide the intro while scrolling.
   function onScroll() {
     lastY = window.scrollY || document.documentElement.scrollTop;
-    
-    // Hide intro content when scrolled down 10rem, show when back at top
-    if (lastY > SCROLL_FADE_THRESHOLD && !intro.classList.contains('content-hidden')) {
-      intro.classList.add('content-hidden');
-    } else if (lastY <= SCROLL_FADE_THRESHOLD && intro.classList.contains('content-hidden')) {
-      intro.classList.remove('content-hidden');
-    }
   }
 
   // Allow immediate removal on wheel/key/touch for discoverability
@@ -104,15 +94,6 @@
   document.querySelectorAll('.scroll-indicator').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-      // Check if button has a data-target attribute
-      const target = btn.getAttribute('data-target');
-      if (target === 'about-me') {
-        const aboutSection = document.querySelector('.about-me');
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        return;
-      }
       // Check if button is in the intro
       const isInIntro = btn.closest('#intro');
       if (isInIntro) {
@@ -141,9 +122,6 @@
 
   // create debug indicator if requested
   createThresholdIndicator();
-
-  // Attach scroll listener to count scrolls and hide intro content after 6 scrolls
-  window.addEventListener('scroll', onScroll, { passive: true });
 
   // Attempt to autoplay the intro video with sound. Browser policies may
   // block autoplay with audio, so we show a fallback button if needed.
@@ -202,20 +180,6 @@
         introVideo.play().then(hideVideoFallback).catch(() => {
           showVideoFallback();
         });
-      });
-    }
-
-    // Handle the large play button overlay (video-play-btn-start)
-    const videoPlayBtnStart = document.querySelector('.video-play-btn-start');
-    if (videoPlayBtnStart) {
-      videoPlayBtnStart.addEventListener('click', function () {
-        introVideo.muted = false;
-        introVideo.volume = parseFloat(volumeSlider ? volumeSlider.value : '0.8');
-        introVideo.play().then(hideVideoFallback).catch(() => {
-          showVideoFallback();
-        });
-        // Hide the play button completely after clicking
-        videoPlayBtnStart.classList.add('hidden');
       });
     }
 

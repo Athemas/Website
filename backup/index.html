@@ -6,7 +6,7 @@
   <!-- Load Orbitron from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,7 +17,7 @@
       Your browser does not support the intro video.
     </video>
     <div id="video-fallback" class="video-fallback" aria-hidden="true">
-      <button type="button" class="video-play-btn-start">Play intro with sound</button> 
+      <button type="button" class="video-play-btn">Play intro with sound</button>
     </div>
 
     <div class="video-controls" aria-label="Intro video controls">
@@ -47,16 +47,16 @@
 
   <nav class="site-menu" aria-hidden="true">
     <ul>
-      <li><a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'})">Home</a></li>
-      <li><a href="#sound-design-projects">Sound Design Projects</a></li>
-      <li><a href="#sound-recording-projects">Sound Recording Projects</a></li>
-      <li><a href="#contact-info">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Sound Design Projects</a></li>
+      <li><a href="sound-projects.html">Sound Recording Projects</a></li>
+      <li><a href="contact-info.html">Contact</a></li>
     </ul>
   </nav>
   <!-- Main page content (starts below the intro) -->
   <main id="main" class="main-content">
 
-    <section class="section section-sound-design" id="sound-design-projects">
+    <section class="section section-sound-design">
       <div class="wrap">
         <div class="sound-design-image-wrap">
           <img src="images/Sound Design Updated 2.jpg" alt="Sound Design" class="sound-design-image">
@@ -70,9 +70,9 @@
 
 
 
-    <section class="section project-section sound-design-projects-list">
+    <section class="section">
       <div class="wrap">
-        <h3 class="second-intro-title">Sound Design Projects</h3>
+        <h3>Sound Design Projects</h3>
 
         <div class="project-video-wrap">
           <button class="project-nav project-prev" aria-label="Previous video" data-prev-src="" data-prev-title="" data-prev-alt="" data-prev-desc="">&lt;</button>
@@ -93,11 +93,12 @@
           </div>
           <button class="project-nav project-next" aria-label="Next video" data-next-src="" data-next-title="" data-next-alt="" data-next-desc="">&gt;</button>
         </div>
+        <div class="more-container">
+        <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
       </div>
-      <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
     </section>
 
-    <section class="section section-sound-recording" id="sound-recording-projects">
+    <section class="section section-sound-recording">
       <div class="wrap">
         <div class="sound-design-image-wrap">
           <img src="images/Sound Recording.jpg" alt="Sound Recording" class="sound-design-image">
@@ -109,9 +110,9 @@
       </div>
     </section>
 
-   <section class="section project-section" id="sound-recording-projects">
+   <section class="section">
       <div class="wrap">
-        <h3 class="second-intro-title">Sound Recording Projects</h3>
+        <h3>Sound Recording Projects</h3>
 
         <div class="project-video-wrap">
           <button class="project-nav project-prev" aria-label="Previous video" data-prev-src="" data-prev-title="" data-prev-alt="" data-prev-desc="">&lt;</button>
@@ -121,8 +122,10 @@
             </div>
              <div class="project-video-container" data-current="0">
                <div class="project-media">
+                 <div class="recording-project-visual">
                    <img class="project-poster" src="" alt="Project Poster" />
                    <iframe id="recording-project-video" class="project-video" width="100%" height="400" src="" title="Recording Project Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                 </div>
 
                  <div class="project-caption">
                   <div class="project-category">Recording Category</div>
@@ -133,15 +136,17 @@
           </div>
           <button class="project-nav project-next" aria-label="Next video" data-next-src="" data-next-title="" data-next-alt="" data-next-desc="">&gt;</button>
         </div>
+        <div class="more-container">
+          <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
+        </div>
       </div>
-      <button class="scroll-indicator" data-target="about-me" aria-label="Scroll to about section"><span class="arrow" aria-hidden="true"></span></button>
     </section>
     
     <section class="about-me">
       <div class="wrap">
         <div class="about-me-content">
-          <h3 class="second-intro-title">About</h3>
-          <p>Jack Konijnendijk (also known as AudioJack) is a passionate sound designer, composer,
+          <h3>About</h3>
+          <p>Jack Konijnendijk (also known as AudioJack) is a passionate sound designer
             and sound recorder with a love for creating immersive audio experiences.
             With a focus on crafting futuristic and otherworldly sounds,
             Jack utilizes synthesizers to bring unique auditory landscapes to life.
@@ -163,7 +168,7 @@
       </div>
     </section>
 
-    <section class="section " id="contact-info">
+    <section class="section ">
       <div class="wrap">
         <h3>Contact Information</h3>
         <ul>

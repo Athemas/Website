@@ -3,13 +3,11 @@
 html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #eaeaea; background: #0b0b0b; }
 
 /* Scroll snap enabled by default; JS will disable after About section */
-html { scroll-snap-type: none; scroll-behavior: smooth; }
+html { scroll-snap-type: none; }
 
 /* Intro (black fullscreen) */
 .intro-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
+  position: relative;
   width: 100%;
   height: 100vh;
   background-color: transparent;
@@ -39,12 +37,6 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   pointer-events: none;
 }
 
-/* Ensure main content and sections are always interactive */
-.main-content,
-.section {
-  pointer-events: auto;
-}
-
 .intro-screen .intro-video,
 .intro-screen .video-controls,
 .intro-screen .video-fallback,
@@ -52,17 +44,6 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 .intro-screen .scroll-indicator,
 .intro-screen .intro-action-controls {
   pointer-events: auto;
-}
-
-/* Hide intro center, buttons, and scroll indicator after threshold */
-.intro-screen.content-hidden .intro-center,
-.intro-screen.content-hidden > .scroll-indicator,
-.intro-screen.content-hidden .video-play-btn-start,
-.intro-screen.content-hidden .intro-action-controls,
-.intro-screen.content-hidden .video-controls {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 300ms ease;
 }
 
 /* place overlays above the intro video */
@@ -112,26 +93,6 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   transition: background 200ms ease, transform 200ms ease;
 }
 
-.video-play-btn-start {
-  padding: 1rem 1.75rem;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 1px solid rgba(255, 161, 219, 0.4);
-  border-radius: 999px;
-  background: rgba(255, 161, 219, 0.15);
-  color: #ff81d6;
-  font-size: 2rem;
-  cursor: pointer;
-  transition: background 200ms ease, transform 200ms ease;
-  z-index: 10;
-  pointer-events: auto;
-}
-.video-play-btn-start.hidden {
-  display: none;
-}
-
 .video-play-btn:hover {
   background: rgba(255, 255, 255, 0.18);
   transform: translateY(-1px);
@@ -158,7 +119,6 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 }
 
 .intro-action-btn {
-  font-family: "Rajdhani", sans-serif;
   padding: 0.85rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
@@ -346,47 +306,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   color: #fff;
 }
 
-.second-intro-title {
-  font-size: clamp(2.3rem, 4vw, 6.2rem);
-  font-family: "Rajdhani-light", sans-serif;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.3rem;
-  color: #fff;
-}
-
-.rajdhani-light {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.rajdhani-regular {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.rajdhani-medium {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.rajdhani-semibold {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.rajdhani-bold {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-
 .intro-sub {
-  font-family: "Rajdhani", sans-serif;
   color: #999;
   margin-top: 0.4rem;
   font-size: 0.95rem;
@@ -443,15 +363,18 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 /* ensure wrap areas can anchor absolute indicators */
 .section .wrap { position: relative; }
 
-.scroll-indicator { position: absolute; left: 50%; bottom: 57px; transform: translateX(-50%); }
+.scroll-indicator { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); }
+
+/* Move Sound Design Projects section indicator down 3 rem */
+.section:nth-of-type(2) .scroll-indicator {
+  bottom: calc(28px - 3rem);
+}
 
 /* Main content starts after the intro */
 .main-content {
   transform: translateY(0);
-  position: relative;
-  z-index: 1;
-  margin-top: 100vh;
-  background: transparent;
+  margin-top: 0;
+  background: linear-gradient(180deg, rgba(88, 11, 81, 0.6), rgba(28, 12, 30, 0.593));
   background-position: center;
   background-attachment: fixed;
   image-rendering: pixelated;
@@ -485,7 +408,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 .hero p { color: #cfcfcf; font-size: 1.05rem; }
 
 /* Sections */
-.section { padding: calc(3rem + 4px) 1.25rem calc(7rem + 6px); color: #e6e6e6; position: relative; }
+.section { padding: calc(3rem + 4px) 1.25rem calc(7rem + 6px); color: #e6e6e6; }
 .section.dark { background: #e0e0e0; background-image: url('images/about-bg.gif'); 
   background-size: cover; 
   background-attachment: fixed; 
@@ -498,14 +421,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 .section:not(.dark) { background: transparent; }
 .wrap { max-width: 1100px; margin: 0 auto; }
 .section:not(.dark) .wrap > h3 { text-align: center; }
-.section.project-section { min-height: calc(100vh); }
-.sound-design-projects-list { min-height: calc(100vh); bottom: -3rem; }
 
-.intro-screen .scroll-indicator { bottom: calc(50px); }
-.section-sound-design .scroll-indicator { bottom: calc(42px); }
-.sound-design-projects-list .scroll-indicator { bottom: calc(55px); }
-.section-sound-recording .scroll-indicator { bottom: calc(50px); }
-.project-section .scroll-indicator { bottom: calc(55px); }
 
 /* More button */
 .more-container { display: flex; justify-content: center; margin-top: 2rem; }
@@ -582,7 +498,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 .project-category { text-align:left; }
 .project-alt { font-weight:600; margin-bottom:0.2rem; }
 .project-desc { color:#bdbdbd; font-size:0.95rem; text-align:left; }
-.project-nav { position:relative; background: rgba(255,255,255,0.08); border:none; color:#fff; width:4rem; min-width:4rem; padding:0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.8rem; opacity:0.25; border-radius:12px; z-index:10; pointer-events: auto; transform: scaleY(1.4); transition: opacity 200ms ease, background 200ms ease; }
+.project-nav { position:relative; background: rgba(255,255,255,0.08); border:none; color:#fff; width:4rem; min-width:4rem; padding:0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.8rem; opacity:0.25; border-radius:12px; z-index:1; pointer-events: auto; transform: scaleY(1.4); transition: opacity 200ms ease, background 200ms ease; }
 .project-prev, .project-next { border:none; }
 .project-nav:hover { background: rgba(255,255,255,0.15); opacity:0.95; }
 .project-media.slide-out-left { transform: translateX(-22px); opacity: 0; }
