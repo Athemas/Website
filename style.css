@@ -307,6 +307,14 @@ html { scroll-snap-type: none; }
   color: #fff;
 }
 
+.second-intro-title {
+  font-size: clamp(2.3rem, 4vw, 4.2rem);
+  font-family: "Rajdhani", sans-serif;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.3rem;
+  color: #fff;
+}
+
 .rajdhani-light {
   font-family: "Rajdhani", sans-serif;
   font-weight: 300;
