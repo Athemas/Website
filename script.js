@@ -808,3 +808,28 @@
   // Attach only the scroll indicator click and keep the intro visible until the user chooses to enter.
   // No intro fade behavior on normal scrolling.
 })();
+
+const introUI = document.querySelector(".intro-ui");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    introUI.classList.add("hidden");
+  } else {
+    introUI.classList.remove("hidden");
+  }
+});
+const triggerSection = document.querySelector(".section-sound-design");
+
+const observer = new IntersectionObserver(
+  ([entry]) => {
+    if (entry.isIntersecting) {
+      introUI.classList.add("hidden");
+    } else {
+      introUI.classList.remove("hidden");
+    }
+  },
+  {
+    threshold: 0.2
+  }
+);
+
+observer.observe(triggerSection);
