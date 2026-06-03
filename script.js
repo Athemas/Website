@@ -261,19 +261,21 @@
     });
   }
 
-const introUI = document.querySelector(".intro-ui");
-const triggerSection = document.querySelector(".section-sound-design");
+const intro = document.getElementById("intro");
+const trigger = document.querySelector(".section section-sound-design");
 
-if (introUI && triggerSection) {
-  window.addEventListener("scroll", () => {
-    const triggerTop = triggerSection.getBoundingClientRect().top;
-
-    if (triggerTop <= window.innerHeight * 0.4) {
-      introUI.classList.add("hidden");
+if (intro && trigger) {
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      intro.classList.add("hidden-intro");
     } else {
-      introUI.classList.remove("hidden");
+      intro.classList.remove("hidden-intro");
     }
+  }, {
+    threshold: 0.3
   });
+
+  observer.observe(trigger);
 }
 
   // Project video player: pause intro audio while playing, provide prev/next hooks

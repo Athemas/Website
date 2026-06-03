@@ -31,7 +31,17 @@ html { scroll-snap-type: none; }
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
+  transition: opacity 300ms ease, transform 300ms ease;
 }
+
+.hidden-intro .intro-center,
+.hidden-intro .intro-action-controls,
+.hidden-intro .scroll-indicator {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
 
 .project-screen{
   position: fixed;
