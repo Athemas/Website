@@ -9,7 +9,7 @@ html { scroll-snap-type: none; }
 .intro-screen {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   width: 100%;
   height: 100vh;
   background-color: transparent;
@@ -453,7 +453,8 @@ html { scroll-snap-type: none; }
 .hero p { color: #cfcfcf; font-size: 1.05rem; }
 
 /* Sections */
-.section { padding: calc(3rem + 4px) 1.25rem calc(7rem + 6px); color: #e6e6e6; }
+.section { padding: calc(3rem + 4px) 1.25rem calc(7rem + 6px); color: #e6e6e6;
+           backdrop-filter: blur(2px); }
 .section.dark { background: #e0e0e0; background-image: url('images/about-bg.gif'); 
   background-size: cover; 
   background-attachment: fixed; 
