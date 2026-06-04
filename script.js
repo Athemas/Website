@@ -844,22 +844,32 @@
   document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
 
+  const button = form.querySelector("button");
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    button.disabled = true;
+    button.textContent = "Sending...";
+
     const formData = new FormData(form);
 
-    const res = await fetch("https://contact-form.j-o-d-konijnendijk.workers.dev/submit", {
+    const res = await fetch("https://contact-form-j-o-d-konijnendijk.workers.dev/submit", {
       method: "POST",
       body: formData
     });
 
     if (res.ok) {
-      alert("✔ Message sent!");
+      button.textContent = "✔ Message sent!";
       form.reset();
     } else {
-      alert("❌ Something went wrong");
+      button.textContent = "❌ Error";
     }
+
+    setTimeout(() => {
+      button.disabled = false;
+      button.textContent = "Send Message";
+    }, 2000);
   });
 });
 
