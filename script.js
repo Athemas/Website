@@ -854,7 +854,7 @@
 
     const formData = new FormData(form);
 
-    const res = await fetch("https://contact-form-j-o-d-konijnendijk.workers.dev/submit", {
+    const res = await fetch("https://contact-form.j-o-d-konijnendijk.workers.dev/submit", {
       method: "POST",
       body: formData
     });
