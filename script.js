@@ -841,6 +841,28 @@
     });
   });
 
+  document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const res = await fetch("https://contact-form.j-o-d-konijnendijk.workers.dev/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    if (res.ok) {
+      alert("✔ Message sent!");
+      form.reset();
+    } else {
+      alert("❌ Something went wrong");
+    }
+  });
+});
+
   // Attach only the scroll indicator click and keep the intro visible until the user chooses to enter.
   // No intro fade behavior on normal scrolling.
 })();
