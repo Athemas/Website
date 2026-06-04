@@ -847,6 +847,8 @@
   const button = form.querySelector("button");
 
   form.addEventListener("submit", async (e) => {
+    console.log("SUBMIT"); // <-- hier
+
     e.preventDefault();
 
     button.disabled = true;
