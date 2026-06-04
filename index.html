@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -177,7 +178,7 @@
     <section class="section">
       <div class="wrap">
         <h3>Contact Form</h3>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
+        <form action="https://contact-form.j-o-d-konijnendijk.workers.dev/submit" method="POST">
           <div>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -190,6 +191,7 @@
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>
           </div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADess8ceD1xRTuQZ"></div>
           <button type="submit">Send Message</button>
         </form>
       </div>
@@ -201,6 +203,7 @@
   </main>
 
   <script src="script.js" defer></script>
+  
 </body>
 </html>
 
