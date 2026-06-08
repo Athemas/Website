@@ -315,10 +315,10 @@
     {
       youtubeId: '_QiZwGyCAWM',
       poster: 'images/Waar Het Stil Wordt.png',
-      title: 'Waar Het Stil Wordt',
+      title: 'Waar Het Stil Wordt (Where It Becomes Silent)',
       alt: 'Waar Het Stil Wordt',
       category: 'Documentary',
-      desc: 'Currently in Post-Production. The sound design emphasises the peaceful nature of the ocean, while also showing the power that it holds.'
+      desc: 'Currently in Post-Production. Waar Het Stil Wordt is a documentary about the ocean and its dual nature. Ambient sounds and pads where used to recreate the vastness of the ocean. The final mix emphasises the peaceful nature of the ocean, while also showing the power that it holds.'
     },
     {
       youtubeId: 'FWcGBk-DW-g',
@@ -326,20 +326,20 @@
       title: 'Alice',
       alt: 'Alice',
       category: 'Short Film',
-      desc: 'The sound design conveys the freezing of time, with the dread to move forward.'
+      desc: 'Alice is a Short Film about loss, the passing of time and the fear of moving forward. A modern sci-fi soundscape was created by the use of synthesized sounds. The sound design conveys the harshness of the protagonist’s journey.'
     },
     {
       youtubeId: 'jwI6lVz4-OU',
       poster: 'images/Licht.png',
-      title: 'Licht',
+      title: 'Licht (Light)',
       alt: 'Licht',
       category: 'Short Film',
-      desc: 'The sound design combines the religious themes of light with the radiation it can produce as while as the electricity which can create it. This combination creates a powerful and ominous soundscape that reflects the film’s themes of power, danger, and the unknown.'
+      desc: 'Licht is a Cosmic Horror Short Film about Light. The sound design combines the religious themes of light with the radiation it can produce as while as the electricity which can create it. This combination creates a powerful and ominous soundscape that reflects the film’s themes of power, danger, and the unknown.'
     },
     {
       youtubeId: 'Tt8j1GbDJOg',
       poster: 'images/Textiel Fabriek.png',
-      title: 'Textiel Fabriek',
+      title: 'Textiel Fabriek (Textile Factory)',
       alt: 'Textiel Fabriek',
       category: 'School Project',
       desc: 'Originally a silent video of a Textile Factory. I added sound design to it as a excersise. The sounds all stem from various cat sounds that i manipulated to recreate factory sounds.'
@@ -349,31 +349,31 @@
   const recordingProjectItems = [
     {
       poster: 'images/Henny en de Hamer.jpg',
-      title: 'Henny en de Hamer',
+      title: 'Henny en de Hamer (Henny and the Hammer)',
       alt: 'Henny en de Hamer',
       category: 'Documentary',
-      desc: 'Currently in Post-Production.'
+      desc: 'Currently in Post-Production. Henny en de Hamer is a documentary about the small village of Cruquius and its battle against the local government. It explores why Henny, who was born and raised in Cruquius and was always the biggest opponent of the local government, suddenly gave in to their demands.'
     },
     {
       poster: 'images/Natte Tosti.jpg',
-      title: 'Natte Tosti',
+      title: 'Natte Tosti (Wet Toast)',
       alt: 'Natte Tosti',
       category: 'Short Film',
-      desc: 'Currently in Production'
+      desc: 'Currently in Production. Natte Tosti is a short film about a student who is forced to work at a farm.'
     },
     {
       poster: 'images/25 Dagen.jpg',
-      title: '25 Dagen',
+      title: '25 Dagen (25 Days)',
       alt: '25 Dagen',
       category: 'Short Film',
-      desc: 'Currently in Post-Production.'
+      desc: 'Currently in Post-Production. 25 Dagen is a short film about two people who start a relationship, but they aren’t right for each other.'
     },
     {
       poster: 'images/Titel Hier.jpg',
-      title: 'Titel Hier',
+      title: 'Titel Hier (Title Here)',
       alt: 'Titel Hier',
       category: 'Documentary',
-      desc: 'Currently in Post-Production'
+      desc: 'Currently in Post-Production. Titel Hier explores the idea of truth in documentaries and how it can be manipulated.'
     }
   ];
 
