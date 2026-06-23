@@ -384,11 +384,17 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   font-style: normal;
 }
 
+.intro-secondary {
+  font-family: "Rajdhani";
+  color: #d1d1d1;
+  margin-top: 0.4rem;
+  font-size: 1.5rem;
+}
 
 .intro-sub {
   font-family: "Rajdhani", sans-serif;
   color: #999;
-  margin-top: 0.4rem;
+  margin-top: 0.6rem;
   font-size: 0.95rem;
 }
 
