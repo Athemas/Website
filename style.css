@@ -579,7 +579,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   flex-wrap: wrap;
 }
 .composition-player-card {
-  width: (450px, 450px);
+  width: (900px, 900px);
   padding: 1rem;
   border-radius: 28px;
   background: linear-gradient(145deg, rgba(35, 12, 37, 0.95), rgba(66, 39, 72, 0.95));
@@ -588,11 +588,11 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: left;
 }
 .composition-cover {
-  width: 300px !important;
-  max-width: 300px !important;
+  width: 600px !important;
+  max-width: 600px !important;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 18px;
