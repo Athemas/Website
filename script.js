@@ -875,6 +875,133 @@
   });
 });
 
+  const compositionItems = [
+    {
+      title: 'Lost In Descent',
+      artist: 'Jack Konijnendijk',
+      cover: 'images/Lost In Descent NEW NEW.jpg',
+      audio: ''
+    },
+    {
+      title: 'Second Track',
+      artist: 'Replace this with your artist name',
+      cover: 'images/About Picture.jpg',
+      audio: ''
+    }
+  ];
+
+  const compositionPrev = document.querySelector('.composition-prev');
+  const compositionNext = document.querySelector('.composition-next');
+  const compositionCover = document.querySelector('.composition-cover');
+  const compositionTitle = document.querySelector('.composition-title');
+  const compositionArtist = document.querySelector('.composition-artist');
+  const compositionPlayBtn = document.querySelector('.composition-play-btn');
+  const compositionAudio = document.querySelector('.composition-audio');
+
+  let currentCompositionIndex = 0;
+  let isCompositionPlaying = false;
+
+  function updateCompositionUI(index) {
+    const item = compositionItems[index] || compositionItems[0];
+    if (!item) return;
+
+    if (compositionCover) {
+      compositionCover.src = item.cover || 'images/AudioJack SoundDesign.jpg';
+      compositionCover.alt = `${item.title || 'Composition'} cover`;
+    }
+
+    if (compositionTitle) {
+      compositionTitle.textContent = item.title || 'Untitled Track';
+    }
+
+    if (compositionArtist) {
+      compositionArtist.textContent = item.artist || 'Artist';
+    }
+
+    if (compositionPlayBtn) {
+      compositionPlayBtn.textContent = isCompositionPlaying ? 'Pause' : 'Play';
+      compositionPlayBtn.disabled = !item.audio;
+    }
+
+    if (compositionAudio) {
+      if (!item.audio) {
+        compositionAudio.pause();
+        compositionAudio.removeAttribute('src');
+        compositionAudio.load();
+      } else if (compositionAudio.getAttribute('src') !== item.audio) {
+        compositionAudio.src = item.audio;
+        compositionAudio.load();
+      }
+    }
+  }
+
+  function setCompositionTrack(index, shouldPlay = false) {
+    if (!compositionItems.length) return;
+
+    currentCompositionIndex = (index + compositionItems.length) % compositionItems.length;
+    const item = compositionItems[currentCompositionIndex];
+    updateCompositionUI(currentCompositionIndex);
+
+    if (compositionAudio && shouldPlay && item && item.audio) {
+      compositionAudio.play().then(() => {
+        isCompositionPlaying = true;
+        if (compositionPlayBtn) {
+          compositionPlayBtn.textContent = 'Pause';
+        }
+      }).catch(() => {
+        isCompositionPlaying = false;
+        if (compositionPlayBtn) {
+          compositionPlayBtn.textContent = 'Play';
+        }
+      });
+    } else {
+      isCompositionPlaying = false;
+      if (compositionPlayBtn) {
+        compositionPlayBtn.textContent = 'Play';
+      }
+    }
+  }
+
+  if (compositionPrev && compositionNext && compositionPlayBtn && compositionAudio) {
+    compositionPrev.addEventListener('click', function () {
+      const previousIndex = (currentCompositionIndex - 1 + compositionItems.length) % compositionItems.length;
+      setCompositionTrack(previousIndex, true);
+    });
+
+    compositionNext.addEventListener('click', function () {
+      const nextIndex = (currentCompositionIndex + 1) % compositionItems.length;
+      setCompositionTrack(nextIndex, true);
+    });
+
+    compositionPlayBtn.addEventListener('click', function () {
+      const item = compositionItems[currentCompositionIndex];
+      if (!item || !item.audio) return;
+
+      if (compositionAudio.paused) {
+        compositionAudio.play().then(() => {
+          isCompositionPlaying = true;
+          compositionPlayBtn.textContent = 'Pause';
+        }).catch(() => {
+          isCompositionPlaying = false;
+          compositionPlayBtn.textContent = 'Play';
+        });
+      } else {
+        compositionAudio.pause();
+        isCompositionPlaying = false;
+        compositionPlayBtn.textContent = 'Play';
+      }
+    });
+  }
+
+  if (compositionAudio) {
+    compositionAudio.addEventListener('ended', function () {
+      const nextIndex = (currentCompositionIndex + 1) % compositionItems.length;
+      setCompositionTrack(nextIndex, true);
+    });
+  }
+
+  setCompositionTrack(0, false);
+
   // Attach only the scroll indicator click and keep the intro visible until the user chooses to enter.
   // No intro fade behavior on normal scrolling.
 })();

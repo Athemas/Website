@@ -51,6 +51,7 @@
   <nav class="site-menu" aria-hidden="true">
     <ul>
       <li><a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'})">Home</a></li>
+      <li><a href="#composition-projects">Composition</a></li>
       <li><a href="#sound-design-projects">Sound Design Projects</a></li>
       <li><a href="#sound-recording-projects">Sound Recording Projects</a></li>
       <li><a href="#contact-info">Contact</a></li>
@@ -58,6 +59,43 @@
   </nav>
   <!-- Main page content (starts below the intro) -->
   <main id="main" class="main-content">
+
+    <section class="section section-composition" id="composition-projects">
+      <div class="wrap">
+        <div class="sound-design-image-wrap composition-image-wrap">
+          <img src="images/AudioJack SoundDesign.jpg" alt="Composition" class="sound-design-image">
+          <div class="sound-design-overlay">
+            <h2 class="intro-title">Composition</h2>
+          </div>
+          <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section project-section composition-section" id="composition">
+      <div class="wrap">
+        <h3 class="second-intro-title">Composition</h3>
+
+        <div class="composition-player-wrap">
+          <button class="composition-nav composition-prev" aria-label="Previous track">&lt;</button>
+
+          <div class="composition-player-card">
+            <img class="composition-cover" src="images/AudioJack SoundDesign.jpg" alt="Composition track cover" />
+            <div class="composition-meta">
+              <h4 class="composition-title">Add Your First Track</h4>
+              <p class="composition-artist">Replace the track data in the script</p>
+            </div>
+            <div class="composition-controls">
+              <button class="composition-play-btn" type="button">Play</button>
+            </div>
+            <audio class="composition-audio" preload="none"></audio>
+          </div>
+
+          <button class="composition-nav composition-next" aria-label="Next track">&gt;</button>
+        </div>
+      </div>
+      <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
+    </section>
 
     <section class="section section-sound-design" id="sound-design-projects">
       <div class="wrap">
