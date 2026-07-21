@@ -604,14 +604,16 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   margin-bottom: 1rem;
 }
 .composition-title {
-  font-size: 3.5rem !important;
+  font-size: 2.5rem !important;
   color: #fff;
   margin-bottom: 0.3rem;
+  text-align: left;
 }
 .composition-artist {
   color: #cfcfcf;
-  font-size: 2.5rem !important;
+  font-size: 1.5rem !important;
   letter-spacing: 0.02em;
+  text-align: left;
 }
 .composition-controls {
   margin-top: 1.25rem;
@@ -622,8 +624,8 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 }
 .composition-play-btn,
 .composition-nav {
-  width: 8rem !important;
-  height: 8rem !important;
+  width: 6rem !important;
+  height: 6rem !important;
   border-radius: 50%;
   border: 1px solid rgba(255, 161, 219, 0.35);
   background: rgba(255, 161, 219, 0.18);
@@ -637,7 +639,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   line-height: 1;
 }
 .composition-play-btn {
-  min-width: 8rem !important;
+  min-width: 6rem !important;
   padding: 0;
 }
 .composition-play-btn:hover,
