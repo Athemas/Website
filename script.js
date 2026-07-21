@@ -880,7 +880,7 @@
       title: 'Lost In Descent',
       artist: 'Jack Konijnendijk',
       cover: 'images/Lost In Descent NEW NEW.jpg',
-      audio: '',
+      audio: 'songs/Lost In Descent.mp3',
       link: 'https://distrokid.com/hyperfollow/jackkonijnendijk/lost-in-descent-2'
     },
     {
