@@ -883,9 +883,9 @@
       audio: ''
     },
     {
-      title: 'Second Track',
-      artist: 'Replace this with your artist name',
-      cover: 'images/About Picture.jpg',
+      title: 'Polaris,
+      artist: 'Jack Konijnendijk',
+      cover: 'images/Polaris.jpg',
       audio: ''
     }
   ];
@@ -919,7 +919,7 @@
     }
 
     if (compositionPlayBtn) {
-      compositionPlayBtn.textContent = isCompositionPlaying ? 'Pause' : 'Play';
+      compositionPlayBtn.textContent = isCompositionPlaying ? '⏸' : '▶';
       compositionPlayBtn.disabled = !item.audio;
     }
 
@@ -980,15 +980,15 @@
       if (compositionAudio.paused) {
         compositionAudio.play().then(() => {
           isCompositionPlaying = true;
-          compositionPlayBtn.textContent = 'Pause';
+          compositionPlayBtn.textContent = '⏸';
         }).catch(() => {
           isCompositionPlaying = false;
-          compositionPlayBtn.textContent = 'Play';
+          compositionPlayBtn.textContent = '▶';
         });
       } else {
         compositionAudio.pause();
         isCompositionPlaying = false;
-        compositionPlayBtn.textContent = 'Play';
+        compositionPlayBtn.textContent = '▶';
       }
     });
   }

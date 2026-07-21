@@ -579,8 +579,8 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   flex-wrap: wrap;
 }
 .composition-player-card {
-  width: min(92vw, 420px);
-  padding: 1.5rem;
+  width: min(92vw, 360px);
+  padding: 1.25rem;
   border-radius: 28px;
   background: linear-gradient(145deg, rgba(35, 12, 37, 0.95), rgba(66, 39, 72, 0.95));
   border: 1px solid rgba(255, 161, 219, 0.3);
@@ -591,64 +591,62 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   text-align: center;
 }
 .composition-cover {
-  width: 100%;
+  width: min(88vw, 280px);
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 18px;
   display: block;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1rem;
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
 }
 .composition-meta {
   margin-bottom: 1rem;
 }
 .composition-title {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   color: #fff;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.3rem;
 }
 .composition-artist {
   color: #cfcfcf;
-  font-size: 1rem;
+  font-size: 0.95rem;
   letter-spacing: 0.02em;
 }
 .composition-controls {
-  margin-top: 0.25rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
 }
-.composition-play-btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 161, 219, 0.3);
-  background: rgba(255, 161, 219, 0.14);
+.composition-play-btn,
+.composition-nav {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 161, 219, 0.25);
+  background: rgba(255, 161, 219, 0.16);
   color: #ff81d6;
-  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: transform 180ms ease, background 180ms ease;
+  font-size: 1.2rem;
+  line-height: 1;
 }
-.composition-play-btn:hover {
-  background: rgba(255, 161, 219, 0.2);
+.composition-play-btn {
+  min-width: 3.2rem;
+  padding: 0;
+}
+.composition-play-btn:hover,
+.composition-nav:hover {
+  background: rgba(255, 161, 219, 0.24);
   transform: translateY(-1px);
 }
 .composition-play-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-.composition-nav {
-  border: none;
-  background: transparent;
-  color: #ff81d6;
-  font-size: 2.4rem;
-  cursor: pointer;
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 180ms ease, opacity 180ms ease;
-}
-.composition-nav:hover {
-  background: rgba(255, 161, 219, 0.12);
 }
 .recording-project-visual .project-poster { width: 100%; display: block; }
 .recording-project-visual #recording-project-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
