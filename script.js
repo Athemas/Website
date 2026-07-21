@@ -978,7 +978,7 @@
     }
 
     if (compositionPlayBtn) {
-      compositionPlayBtn.textContent = isCompositionPlaying ? '⏸' : '▶';
+      compositionPlayBtn.textContent = isCompositionPlaying ? '⏸' : '◀';
       compositionPlayBtn.disabled = !item.audio;
     }
 
@@ -1005,18 +1005,18 @@
       compositionAudio.play().then(() => {
         isCompositionPlaying = true;
         if (compositionPlayBtn) {
-          compositionPlayBtn.textContent = 'Pause';
+          compositionPlayBtn.textContent = '⏸';
         }
       }).catch(() => {
         isCompositionPlaying = false;
         if (compositionPlayBtn) {
-          compositionPlayBtn.textContent = 'Play';
+          compositionPlayBtn.textContent = '▶';
         }
       });
     } else {
       isCompositionPlaying = false;
       if (compositionPlayBtn) {
-        compositionPlayBtn.textContent = 'Play';
+        compositionPlayBtn.textContent = '▶';
       }
     }
   }
