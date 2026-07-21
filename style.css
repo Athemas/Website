@@ -590,6 +590,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 }
 .composition-image-wrap { height: 92vh; min-height: 82vh; }
 .composition-player-wrap {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -651,12 +652,15 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 .composition-controls {
   width: 100%;
   margin-top: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  display: block;
+  position: relative;
+  min-height: 4.8rem;
 }
 .composition-nav-group {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -683,6 +687,10 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   min-width: 3.6rem !important;
 }
 .composition-link-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   text-decoration: none;
   font-size: 1.5rem !important;
 }
@@ -705,6 +713,9 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  position: absolute;
+  top: 0;
+  left: calc(50% + 235px + 1.25rem);
 }
 .composition-track-list-title {
   font-size: 0.95rem;
@@ -730,6 +741,35 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   background: rgba(255, 161, 219, 0.15);
   color: #fff;
 }
+@media (max-width: 900px) {
+  .composition-player-wrap {
+    align-items: center;
+  }
+  .composition-track-list {
+    position: static;
+    left: auto;
+    top: auto;
+    width: min(92vw, 320px);
+    margin: 0 auto;
+  }
+  .composition-controls {
+    min-height: auto;
+  }
+  .composition-link-btn {
+    position: static;
+    transform: none;
+    margin-left: 0;
+    display: inline-flex;
+    align-self: center;
+  }
+  .composition-nav-group {
+    position: static;
+    transform: none;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+}
+
 .recording-project-visual .project-poster { width: 100%; display: block; }
 .recording-project-visual #recording-project-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 .project-video-title { text-align:center; margin:0; width:100%; font-size:3rem; border:none; color:#ffffff; padding:0.85rem 1rem; }
