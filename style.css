@@ -616,7 +616,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   text-align: left;
 }
 .composition-controls {
-  margin-top: 1.25rem;
+  margin-top: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -624,8 +624,8 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 }
 .composition-play-btn,
 .composition-nav {
-  width: 6rem !important;
-  height: 6rem !important;
+  width: 4rem !important;
+  height: 4rem !important;
   border-radius: 50%;
   border: 1px solid rgba(255, 161, 219, 0.35);
   background: rgba(255, 161, 219, 0.18);
@@ -639,7 +639,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   line-height: 1;
 }
 .composition-play-btn {
-  min-width: 6rem !important;
+  min-width: 4rem !important;
   padding: 0;
 }
 .composition-play-btn:hover,
