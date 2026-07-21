@@ -592,7 +592,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 .composition-player-wrap {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.25rem;
   margin-top: 1rem;
   flex-wrap: wrap;
@@ -653,8 +653,14 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   margin-top: 0.75rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.composition-nav-group {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 .composition-play-btn,
 .composition-nav,
@@ -712,10 +718,11 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   border: none;
   color: #f2f2f2;
   text-align: left;
-  padding: 0.55rem 0.7rem;
+  padding: 0.35rem 0.65rem;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.92rem;
+  line-height: 1.2;
   transition: background 180ms ease, color 180ms ease;
 }
 .composition-track-item:hover,
