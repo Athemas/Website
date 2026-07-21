@@ -598,7 +598,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   flex-wrap: wrap;
 }
 .composition-player-card {
-  width: min(92vw, 525px);
+  width: min(92vw, 470px);
   padding: 1rem;
   border-radius: 28px;
   background: linear-gradient(145deg, rgba(35, 12, 37, 0.95), rgba(10, 10, 12, 0.95));
@@ -658,8 +658,8 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 }
 .composition-play-btn,
 .composition-nav {
-  width: 4.8rem !important;
-  height: 4.8rem !important;
+  width: 3.6rem !important;
+  height: 3.6rem !important;
   border-radius: 50%;
   border: 1px solid var(--composition-accent-border, rgba(255, 161, 219, 0.35));
   background: var(--composition-control-bg, rgba(255, 161, 219, 0.18));
@@ -673,7 +673,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   padding: 0;
 }
 .composition-play-btn {
-  min-width: 4.8rem !important;
+  min-width: 3.6rem !important;
 }
 .composition-play-btn:hover,
 .composition-nav:hover {
