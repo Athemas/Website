@@ -594,7 +594,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   width: 90px !important;
   max-width: 90px !important;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 18px;
   display: block;
   margin-bottom: 1rem;
