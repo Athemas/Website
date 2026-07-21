@@ -579,7 +579,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   flex-wrap: wrap;
 }
 .composition-player-card {
-  width: min(92vw, 300px);
+  width: min(300px, 300px);
   padding: 1rem;
   border-radius: 28px;
   background: linear-gradient(145deg, rgba(35, 12, 37, 0.95), rgba(66, 39, 72, 0.95));
