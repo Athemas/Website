@@ -568,54 +568,74 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 .project-poster { width:100%; aspect-ratio: 1538 / 864; object-fit:cover; display:block; background:#000; }
 .recording-project-visual { position: relative; width: 100%; }
 
-.composition-section { min-height: calc(100vh - 4rem); }
+.composition-section {
+  min-height: calc(100vh - 4rem);
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+.section-composition {
+  padding-bottom: 1rem;
+}
+.section-sound-design {
+  padding-bottom: 1rem;
+}
+.section-sound-design + .section.project-section.sound-design-projects-list {
+  padding-top: 1rem;
+}
+.section-sound-recording {
+  padding-bottom: 1rem;
+}
+.section-sound-recording + .section.project-section {
+  padding-top: 1rem;
+}
 .composition-image-wrap { height: 92vh; min-height: 82vh; }
 .composition-player-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1.25rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   flex-wrap: wrap;
 }
 .composition-player-card {
-  width: (900px, 900px);
+  width: min(92vw, 420px);
   padding: 1rem;
   border-radius: 28px;
-  background: linear-gradient(145deg, rgba(35, 12, 37, 0.95), rgba(66, 39, 72, 0.95));
+  background: linear-gradient(145deg, rgba(35, 12, 37, 0.95), rgba(10, 10, 12, 0.95));
   border: 1px solid rgba(255, 161, 219, 0.3);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   text-align: left;
 }
 .composition-cover {
-  width: 600px !important;
-  max-width: 600px !important;
+  width: 180px !important;
+  max-width: 180px !important;
   aspect-ratio: 1 / 1;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 18px;
   display: block;
   margin-bottom: 1rem;
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
 }
 .composition-meta {
-  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.75rem;
 }
-.composition-title {
-  font-size: 2.5rem !important;
-  color: #fff;
-  margin-bottom: 0.3rem;
-  text-align: left;
-}
-.composition-artist {
-  color: #cfcfcf;
-  font-size: 1.5rem !important;
-  letter-spacing: 0.02em;
-  text-align: left;
+.composition-side-triangle {
+  width: 0;
+  height: 0;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-left: 26px solid var(--composition-accent, #ff81d6);
+  margin-left: 0.2rem;
 }
 .composition-controls {
+  width: 100%;
   margin-top: 0.75rem;
   display: flex;
   align-items: center;
@@ -624,23 +644,22 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 }
 .composition-play-btn,
 .composition-nav {
-  width: 4rem !important;
-  height: 4rem !important;
+  width: 4.2rem !important;
+  height: 4.2rem !important;
   border-radius: 50%;
-  border: 1px solid rgba(255, 161, 219, 0.35);
-  background: rgba(255, 161, 219, 0.18);
-  color: #ff81d6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid var(--composition-accent-border, rgba(255, 161, 219, 0.35));
+  background: var(--composition-control-bg, rgba(255, 161, 219, 0.18));
+  color: var(--composition-control-text, #ff81d6);
+  display: grid;
+  place-items: center;
   cursor: pointer;
   transition: transform 180ms ease, background 180ms ease;
-  font-size: 3rem !important;
+  font-size: 1.6rem !important;
   line-height: 1;
+  padding: 0;
 }
 .composition-play-btn {
-  min-width: 4rem !important;
-  padding: 0;
+  min-width: 4.2rem !important;
 }
 .composition-play-btn:hover,
 .composition-nav:hover {

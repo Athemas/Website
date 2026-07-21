@@ -893,6 +893,7 @@
   const compositionPrev = document.querySelector('.composition-prev');
   const compositionNext = document.querySelector('.composition-next');
   const compositionCover = document.querySelector('.composition-cover');
+  const compositionCard = document.querySelector('.composition-player-card');
   const compositionTitle = document.querySelector('.composition-title');
   const compositionArtist = document.querySelector('.composition-artist');
   const compositionPlayBtn = document.querySelector('.composition-play-btn');
@@ -901,13 +902,71 @@
   let currentCompositionIndex = 0;
   let isCompositionPlaying = false;
 
+  function applyCompositionTheme(src) {
+    if (!compositionCard) return;
+
+    const image = new Image();
+    image.onload = function () {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if (!context) return;
+
+      const maxDim = 120;
+      const scale = Math.min(1, maxDim / Math.max(image.width, image.height));
+      canvas.width = Math.max(1, Math.floor(image.width * scale));
+      canvas.height = Math.max(1, Math.floor(image.height * scale));
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+      const { data } = context.getImageData(0, 0, canvas.width, canvas.height);
+      let red = 0;
+      let green = 0;
+      let blue = 0;
+      let pixelCount = 0;
+
+      for (let i = 0; i < data.length; i += 4) {
+        const alpha = data[i + 3];
+        if (alpha < 128) continue;
+        red += data[i];
+        green += data[i + 1];
+        blue += data[i + 2];
+        pixelCount += 1;
+      }
+
+      if (!pixelCount) return;
+
+      red = Math.floor(red / pixelCount);
+      green = Math.floor(green / pixelCount);
+      blue = Math.floor(blue / pixelCount);
+
+      const luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+      const textColor = luminance > 160 ? '#111111' : '#ffffff';
+      const borderColor = luminance > 160 ? 'rgba(0, 0, 0, 0.28)' : 'rgba(255, 255, 255, 0.28)';
+      const controlBg = `rgba(${red}, ${green}, ${blue}, 0.26)`;
+
+      compositionCard.style.background = `linear-gradient(145deg, rgba(${red}, ${green}, ${blue}, 0.95), rgba(10, 10, 12, 0.95))`;
+      compositionCard.style.borderColor = borderColor;
+      compositionCard.style.setProperty('--composition-accent', `rgb(${red}, ${green}, ${blue})`);
+      compositionCard.style.setProperty('--composition-accent-border', borderColor);
+      compositionCard.style.setProperty('--composition-control-bg', controlBg);
+      compositionCard.style.setProperty('--composition-control-text', textColor);
+    };
+
+    image.src = src || 'images/AudioJack SoundDesign.jpg';
+  }
+
   function updateCompositionUI(index) {
     const item = compositionItems[index] || compositionItems[0];
     if (!item) return;
 
     if (compositionCover) {
-      compositionCover.src = item.cover || 'images/AudioJack SoundDesign.jpg';
+      const coverSrc = item.cover || 'images/AudioJack SoundDesign.jpg';
+      compositionCover.src = coverSrc;
       compositionCover.alt = `${item.title || 'Composition'} cover`;
+      if (compositionCover.complete) {
+        applyCompositionTheme(coverSrc);
+      } else {
+        compositionCover.onload = () => applyCompositionTheme(coverSrc);
+      }
     }
 
     if (compositionTitle) {
