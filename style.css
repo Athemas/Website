@@ -579,8 +579,8 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   flex-wrap: wrap;
 }
 .composition-player-card {
-  width: min(92vw, 360px);
-  padding: 1.25rem;
+  width: min(92vw, 300px);
+  padding: 1rem;
   border-radius: 28px;
   background: linear-gradient(145deg, rgba(35, 12, 37, 0.95), rgba(66, 39, 72, 0.95));
   border: 1px solid rgba(255, 161, 219, 0.3);
@@ -591,7 +591,8 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   text-align: center;
 }
 .composition-cover {
-  width: 100px;
+  width: 90px !important;
+  max-width: 90px !important;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 18px;
@@ -603,13 +604,13 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   margin-bottom: 1rem;
 }
 .composition-title {
-  font-size: 3rem;
+  font-size: 3.5rem !important;
   color: #fff;
   margin-bottom: 0.3rem;
 }
 .composition-artist {
   color: #cfcfcf;
-  font-size: 2rem;
+  font-size: 2.5rem !important;
   letter-spacing: 0.02em;
 }
 .composition-controls {
@@ -617,12 +618,12 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 .composition-play-btn,
 .composition-nav {
-  width: 5.6rem;
-  height: 5.6rem;
+  width: 8rem !important;
+  height: 8rem !important;
   border-radius: 50%;
   border: 1px solid rgba(255, 161, 219, 0.35);
   background: rgba(255, 161, 219, 0.18);
@@ -632,11 +633,11 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   justify-content: center;
   cursor: pointer;
   transition: transform 180ms ease, background 180ms ease;
-  font-size: 2rem;
+  font-size: 3rem !important;
   line-height: 1;
 }
 .composition-play-btn {
-  min-width: 5.6rem;
+  min-width: 8rem !important;
   padding: 0;
 }
 .composition-play-btn:hover,

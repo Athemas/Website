@@ -883,7 +883,7 @@
       audio: ''
     },
     {
-      title: 'Polaris,
+      title: 'Polaris',
       artist: 'Jack Konijnendijk',
       cover: 'images/Polaris.jpg',
       audio: ''
