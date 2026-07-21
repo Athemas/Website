@@ -880,24 +880,28 @@
       title: 'Lost In Descent',
       artist: 'Jack Konijnendijk',
       cover: 'images/Lost In Descent NEW NEW.jpg',
-      audio: ''
+      audio: '',
+      link: 'https://distrokid.com/hyperfollow/jackkonijnendijk/lost-in-descent-2'
     },
     {
       title: 'Polaris',
       artist: 'Jack Konijnendijk',
       cover: 'images/Polaris.jpg',
-      audio: ''
+      audio: '',
+      link: 'https://distrokid.com/hyperfollow/jackkonijnendijk/lost-in-descent-2'
     }
   ];
 
   const compositionPrev = document.querySelector('.composition-prev');
   const compositionNext = document.querySelector('.composition-next');
+  const compositionLinkBtn = document.querySelector('.composition-link-btn');
   const compositionCover = document.querySelector('.composition-cover');
   const compositionCard = document.querySelector('.composition-player-card');
   const compositionTitle = document.querySelector('.composition-title');
   const compositionArtist = document.querySelector('.composition-artist');
   const compositionPlayBtn = document.querySelector('.composition-play-btn');
   const compositionAudio = document.querySelector('.composition-audio');
+  const trackButtons = document.querySelectorAll('.composition-track-item');
 
   let currentCompositionIndex = 0;
   let isCompositionPlaying = false;
@@ -977,6 +981,15 @@
       compositionArtist.textContent = item.artist || 'Artist';
     }
 
+    trackButtons.forEach(function (button) {
+      const isActive = Number(button.dataset.index) === currentCompositionIndex;
+      button.classList.toggle('active', isActive);
+    });
+
+    if (compositionLinkBtn) {
+      compositionLinkBtn.href = item.link || 'https://distrokid.com/hyperfollow/jackkonijnendijk/lost-in-descent-2';
+    }
+
     if (compositionPlayBtn) {
       compositionPlayBtn.textContent = isCompositionPlaying ? '⏸' : '◀';
       compositionPlayBtn.disabled = !item.audio;
@@ -1030,6 +1043,15 @@
     compositionNext.addEventListener('click', function () {
       const nextIndex = (currentCompositionIndex + 1) % compositionItems.length;
       setCompositionTrack(nextIndex, true);
+    });
+
+    trackButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const index = Number(button.dataset.index);
+        if (Number.isFinite(index)) {
+          setCompositionTrack(index, false);
+        }
+      });
     });
 
     compositionPlayBtn.addEventListener('click', function () {
