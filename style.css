@@ -347,7 +347,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 }
 
 .second-intro-title {
-  font-size: clamp(2.3rem, 4vw, 6.2rem);
+  font-size: clamp(1.7rem, 4vw, 4.2rem);
   font-family: "Rajdhani-light", sans-serif;
   letter-spacing: 0.04em;
   margin-bottom: 0.3rem;
@@ -465,17 +465,6 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   min-height: 200vh;
   position: relative;
 }
-.main-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 20px;
-  background: #000;
-  pointer-events: none;
-}
-
 /* Hero */
 .hero {
   padding: 6rem 1.25rem;
