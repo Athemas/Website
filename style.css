@@ -805,7 +805,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
 @keyframes slide-in-right { to { transform: translateX(0); opacity:1; } }
 
 .project-content h3 {
-    font-size: 2rem;
+  font-size: 1rem;
     margin-bottom: 0.5rem;
     color: #fff;
     border: 1px solid rgba(255, 161, 219, 0.4);

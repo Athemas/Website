@@ -42,6 +42,7 @@
   let debounceTimer = null;
   let lastY = 0;
   let firstRun = true;
+  let introAudioFaded = false;
   
   // Optional visual threshold indicator for debugging. Shown when
   // `data-show-threshold="true"` is present on the #intro element.
@@ -77,9 +78,29 @@
 
   // Scroll distance threshold: 10rem = 160px (at 16px base font size)
   const SCROLL_FADE_THRESHOLD = 500;
+  const INTRO_AUDIO_FADE_DURATION = 5000;
+
+  function fadeIntroAudio() {
+    if (!introVideo || introAudioFaded) return;
+    introAudioFaded = true;
+
+    const startVolume = introVideo.volume;
+    const startTime = performance.now();
+
+    function step(currentTime) {
+      const progress = Math.min(1, (currentTime - startTime) / INTRO_AUDIO_FADE_DURATION);
+      introVideo.volume = startVolume * (1 - progress);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
   
   // onScroll: track scroll position and fade intro content when scrolled 10rem down
   function onScroll() {
+    fadeIntroAudio();
     lastY = window.scrollY || document.documentElement.scrollTop;
     
     // Hide intro content when scrolled down 10rem, show when back at top
@@ -877,6 +898,13 @@
 
   const compositionItems = [
     {
+      title: 'Hypomnesic Dissociation',
+      artist: 'Jack Konijnendijk',
+      cover: 'images/Hypomnesic Dissociation.jpeg',
+      audio: 'https://media.jackondemand.nl/Hypomnesic_Dissociation_Short.mp3',
+      link: 'https://ffm.to/hypomnesic-dissociation'
+    },
+    {
       title: 'Lost In Descent',
       artist: 'Jack Konijnendijk',
       cover: 'images/Lost In Descent NEW NEW.jpg',
@@ -889,13 +917,6 @@
       cover: 'images/Polaris.jpg',
       audio: 'https://media.jackondemand.nl/Polaris_Short.mp3',
       link: 'https://ffm.to/polaris-jk'
-    },
-    {
-      title: 'Hypomnesic Dissociation',
-      artist: 'Jack Konijnendijk',
-      cover: 'images/Hypomnesic Dissociation.jpg',
-      audio: 'https://media.jackondemand.nl/Hypomnesic_Dissociation_Short.mp3',
-      link: 'https://ffm.to/hypomnesic-dissociation'
     }
   ];
 
@@ -908,7 +929,19 @@
   const compositionArtist = document.querySelector('.composition-artist');
   const compositionPlayBtn = document.querySelector('.composition-play-btn');
   const compositionAudio = document.querySelector('.composition-audio');
-  const trackButtons = document.querySelectorAll('.composition-track-item');
+  const compositionTrackList = document.querySelector('.composition-track-list');
+  const trackButtons = [];
+
+  compositionItems.forEach(function (item, index) {
+    if (!compositionTrackList) return;
+    const button = document.createElement('button');
+    button.className = 'composition-track-item';
+    button.type = 'button';
+    button.dataset.index = String(index);
+    button.textContent = item.title;
+    compositionTrackList.appendChild(button);
+    trackButtons.push(button);
+  });
 
   let currentCompositionIndex = 0;
   let isCompositionPlaying = false;
