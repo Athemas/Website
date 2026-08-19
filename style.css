@@ -419,8 +419,8 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  height:110vh;
-  min-height:100vh;
+  height:90vh;
+  min-height:90vh;
   overflow:hidden;
   border-radius:0;
   border: none;
