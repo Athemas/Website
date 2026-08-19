@@ -441,6 +441,7 @@ html { scroll-snap-type: none; scroll-behavior: smooth; }
   pointer-events: none;
 }
 .sound-design-overlay .intro-title {
+  font-size: clamp(1.3rem, 3vw, 2.6rem);
   margin: 0;
   color: #fff;
   text-shadow: 0 0 24px rgba(0, 0, 0, 0.7);
