@@ -881,14 +881,21 @@
       artist: 'Jack Konijnendijk',
       cover: 'images/Lost In Descent NEW NEW.jpg',
       audio: 'https://media.jackondemand.nl/Lost_In_Descent.mp3',
-      link: 'https://distrokid.com/hyperfollow/jackkonijnendijk/lost-in-descent-2'
+      link: 'https://ffm.to/lost-in-descent'
     },
     {
       title: 'Polaris',
       artist: 'Jack Konijnendijk',
       cover: 'images/Polaris.jpg',
-      audio: '',
-      link: 'https://distrokid.com/hyperfollow/jackkonijnendijk/lost-in-descent-2'
+      audio: 'https://media.jackondemand.nl/Polaris_Short.mp3',
+      link: 'https://ffm.to/polaris-jk'
+    },
+    {
+      title: 'Hypomnesic Dissociation',
+      artist: 'Jack Konijnendijk',
+      cover: 'images/Hypomnesic Dissociation.jpg',
+      audio: 'https://media.jackondemand.nl/Hypomnesic_Dissociation_Short.mp3',
+      link: 'https://ffm.to/hypomnesic-dissociation'
     }
   ];
 
