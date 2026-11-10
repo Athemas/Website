@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>composing - Jack On Demand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="content-page" style="--page-background: none">
+  <button class="site-menu-toggle" type="button" aria-label="Open site menu" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="4" fill="white" fill-opacity="0.08" />
+      <path d="M7 9h10M7 12h10M7 15h7" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+    </svg>
+  </button>
+
+  <nav class="site-menu" aria-hidden="true">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html#all">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="content-page-main">
+    <h1 class="content-page-title">All</h1>
+    <div class="composing-tabs" role="tablist" aria-label="Portfolio sections">
+      <button class="composing-tab" id="all-tab" type="button" role="tab" aria-selected="true" aria-controls="all-panel" data-section="all" data-title="All" data-background="images/Moon.jpg" tabindex="0">All</button>
+      <button class="composing-tab" id="sound-design-tab" type="button" role="tab" aria-selected="false" aria-controls="sound-design-panel" data-section="sound-design" data-title="Sound Design" data-background="images/Sound Design Updated 2.jpg" tabindex="-1">Sound Design</button>
+      <button class="composing-tab" id="mixing-tab" type="button" role="tab" aria-selected="false" aria-controls="mixing-panel" data-section="mixing" data-title="Mixing" data-background="images/DAW.png" tabindex="-1">Mixing</button>
+      <button class="composing-tab" id="recording-tab" type="button" role="tab" aria-selected="false" aria-controls="recording-panel" data-section="recording" data-title="Recording" data-background="images/Sound Recording.jpg" tabindex="-1">Recording</button>
+      <button class="composing-tab" id="composing-tab" type="button" role="tab" aria-selected="false" aria-controls="composing-panel" data-section="composing" data-title="Composing" data-background="images/Composing.jpg" tabindex="-1">Composing</button>
+      <button class="composing-tab" id="personal-work-tab" type="button" role="tab" aria-selected="false" aria-controls="personal-work-panel" data-section="personal-work" data-title="Music" data-background="none" tabindex="-1">Music</button>
+    </div>
+
+    <section class="composing-tab-panel" id="all-panel" role="tabpanel" aria-labelledby="all-tab">
+      <div class="project-card-grid" data-project-category="all" aria-label="All projects"></div>
+    </section>
+
+    <section class="composing-tab-panel" id="sound-design-panel" role="tabpanel" aria-labelledby="sound-design-tab" hidden>
+      <div class="project-card-grid" data-project-category="sound-design" aria-label="Sound design projects"></div>
+    </section>
+
+    <section class="composing-tab-panel" id="mixing-panel" role="tabpanel" aria-labelledby="mixing-tab" hidden>
+      <div class="project-card-grid" data-project-category="mixing" aria-label="Mixing projects"></div>
+    </section>
+
+    <section class="composing-tab-panel" id="recording-panel" role="tabpanel" aria-labelledby="recording-tab" hidden>
+      <div class="project-card-grid" data-project-category="recording" aria-label="Recording projects"></div>
+    </section>
+
+    <section class="composing-tab-panel" id="composing-panel" role="tabpanel" aria-labelledby="composing-tab" hidden>
+      <div class="project-card-grid" data-project-category="composing" aria-label="composing projects"></div>
+    </section>
+
+    <section class="composing-tab-panel" id="personal-work-panel" role="tabpanel" aria-labelledby="personal-work-tab" hidden>
+      <div class="section content-page-section composing-section" id="composing">
+        <div class="composing-player-wrap">
+          <div class="composing-player-card">
+            <img class="composing-cover" src="images/Lost In Descent NEW NEW.jpg" alt="composing track cover" />
+            <div class="composing-meta">
+              <h2 class="composing-title">Lost In Descent</h2>
+              <p class="composing-artist">Jack Konijnendijk</p>
+            </div>
+            <div class="composing-controls">
+              <div class="composing-nav-group">
+                <button class="composing-nav composing-prev" type="button" aria-label="Previous track">⏮</button>
+                <button class="composing-play-btn" type="button" aria-label="Play track">▶</button>
+                <button class="composing-nav composing-next" type="button" aria-label="Next track">⏭</button>
+              </div>
+              <a class="composing-link-btn" href="https://distrokid.com/hyperfollow/jackkonijnendijk/lost-in-descent-2" target="_blank" rel="noopener noreferrer" aria-label="Open current track">↗</a>
+            </div>
+            <audio class="composing-audio" preload="none"></audio>
+          </div>
+
+          <div class="composing-track-list" aria-label="composing track list">
+            <h2 class="composing-track-list-title">Tracks</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add each project once. data-tags accepts Sound Design, Mixing, Recording, and composing. -->
+    <template id="project-library">
+      <article class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-dialog" data-tags="Sound Design, Recording, Mixing" 
+       data-description= "Currently in Production."
+      style="--card-image: url('images/Soon.png')">
+        <h2 class="project-card-title">Naud</h2>
+      </article>
+      <article class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-dialog" data-tags="Sound Design, Recording, Mixing" 
+      data-description= "Currently in Production."
+      style="--card-image: url('images/Soon.png')">
+        <h2 class="project-card-title">Metamorph</h2>
+      </article>
+      <article class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-dialog" data-tags="Recording, Mixing"
+      data-description= "Henny en de Hamer is a documentary that explores the story of Henny, who was born and raised in Cruquius and always the biggest opponent of the local government. Her time is coming to an end, and she hopes the next generation will continue the fight." 
+       style="--card-image: url('images/Henny en de Hamer.jpg')">
+        <h2 class="project-card-title">Henny en de Hamer</h2>
+      </article>
+      <article class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-dialog" data-tags="Recording" 
+      data-description= "Two old friends reunite and form a bond that grows into something more than just friendship. When one of them has to leave the country for an internship, will their romance last?"
+      data-vimeo-link="https://vimeo.com/1232208707?fl=pl&fe=cm"
+      style="--card-image: url('images/25 Dagen.jpg')">
+        <h2 class="project-card-title">25 Dagen</h2>
+      </article>
+      <article class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-dialog" data-tags="composing, Sound Design, Recording, Mixing" 
+      data-description= "Waar Het Stil Wordt is a documentary about the ocean and its dual nature. Ambient sounds and pads where used to recreate the vastness of the ocean. The final mix emphasises the peaceful nature of the ocean, while also showing the power that it holds." 
+      data-youtube-id="_QiZwGyCAWM" style="--card-image: url('images/Waar het Stil Wordt.png')">
+        <h2 class="project-card-title">Waar het Stil Wordt</h2>
+      </article>
+      <article class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-dialog" data-tags="composing, Sound Design" 
+      data-description= "Licht is a Cosmic Horror Short Film about Light. The sound design combines the religious themes of light with the radiation it can produce as while as the electricity which can create it. This combination creates a powerful and ominous soundscape that reflects the film’s themes of power, danger, and the unknown." 
+      data-youtube-id="jwI6lVz4-OU" style="--card-image: url('images/Licht.png')">
+        <h2 class="project-card-title">Licht</h2>
+      </article>
+      <article class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-dialog" data-tags="composing, Sound Design" 
+      data-description= "Alice is a Short Film about loss, the passing of time and the fear of moving forward. A modern sci-fi soundscape was created by the use of synthesized sounds. The sound design conveys the harshness of the protagonist’s journey." 
+      data-youtube-id="FWcGBk-DW-g" style="--card-image: url('images/Alice.png')">
+        <h2 class="project-card-title">Alice</h2>
+      </article>
+      <article class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="project-dialog" data-tags="Sound Design" 
+        data-description= "Originally a silent video of a Textile Factory. I added sound design to it as a excersise. The sounds all stem from various cat sounds that i manipulated to recreate factory sounds." 
+        data-youtube-id="Tt8j1GbDJOg" style="--card-image: url('images/Textiel Fabriek.png')">
+        <h2 class="project-card-title">Textiel Fabriek</h2>
+      </article>
+    </template>
+  </main>
+
+  <dialog class="project-dialog" id="project-dialog" aria-modal="true" aria-labelledby="project-dialog-title">
+    <div class="project-dialog-box">
+      <header class="project-dialog-header">
+        <h2 class="project-dialog-title" id="project-dialog-title"></h2>
+        <button class="project-dialog-close" type="button" aria-label="Close project details" data-close-project-dialog>×</button>
+      </header>
+      <div class="project-dialog-tags" aria-label="Project tags"></div>
+      <div class="project-dialog-content">
+        <div class="project-dialog-description">
+          <p>Project details will be added here.</p>
+        </div>
+        <div class="project-dialog-video">
+          <iframe title="Project video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen hidden></iframe>
+          <p class="project-dialog-video-placeholder">Video placeholder</p>
+        </div>
+      </div>
+      <footer class="project-dialog-footer">
+        <button class="composing-tab" type="button" data-close-project-dialog>Close</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Jack On Demand - Creating an otherworldly experience</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

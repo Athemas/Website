@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
-<body>
+<body class="home-page">
 
 <div id="intro" class="intro-screen" data-fadepoint="360" data-debounce="120" data-show-threshold="false">
-    <video id="intro-video" class="intro-video" autoplay muted playsinline preload="auto" poster="images/Front Page 2.jpg">
+    <video id="intro-video" class="intro-video" autoplay muted playsinline preload="auto" poster="images/Background.jpg" aria-label="Intro video" tabindex="-1">
       <source src="https://media.jackondemand.nl/Jod-Intro.mp4" type="video/mp4">
       Your browser does not support the intro video.
     </video>
@@ -29,8 +29,12 @@
 
     <div class="intro-center">
         <h1 class="intro-title">Jack On Demand</h1>
-        <p class="intro-secondary">Sound Design • Composition • Recording</p>
-        <p class="intro-sub">Scroll to enter</p>
+        <p class="intro-secondary">
+          <a href="portfolio.html#sound-design">Sound Design</a> •
+          <a href="portfolio.html#mixing">Mixing</a> •
+          <a href="portfolio.html#composing">Composing</a> •
+          <a href="portfolio.html#recording">Recording</a>
+        </p>
     </div>
     <div class="intro-action-controls" aria-label="Intro video controls">
       <button id="intro-start" class="intro-action-btn">Start</button>
@@ -38,7 +42,6 @@
       <button id="intro-replay" class="intro-action-btn">Replay</button>
     </div>
   
-  <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
 </div>
   <!-- Top-right logo/menu toggle -->
   <button class="site-menu-toggle" aria-label="Open site menu" aria-expanded="false">
@@ -50,202 +53,22 @@
 
   <nav class="site-menu" aria-hidden="true">
     <ul>
-      <li><a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'})">Home</a></li>
-      <li><a href="#composition-projects">Composition</a></li>
-      <li><a href="#sound-design-projects">Sound Design Projects</a></li>
-      <li><a href="#sound-recording-projects">Sound Recording Projects</a></li>
-      <li><a href="#contact-info">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html#all">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
-  <!-- Main page content (starts below the intro) -->
-  <main id="main" class="main-content">
 
-    <section class="section section-composition" id="composition-projects">
-      <div class="wrap">
-        <div class="sound-design-image-wrap composition-image-wrap">
-          <img src="images/Soundbars.jpeg" alt="Composition" class="sound-design-image">
-          <div class="sound-design-overlay">
-            <h2 class="intro-title">Composition</h2>
-          </div>
-          <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section project-section composition-section" id="composition">
-      <div class="wrap">
-        <h3 class="second-intro-title">Composition</h3>
-
-        <div class="composition-player-wrap">
-          <div class="composition-player-card">
-            <img class="composition-cover" src="images/Lost In Descent NEW NEW.jpg" alt="Composition track cover" />
-            <div class="composition-meta">
-              <h4 class="composition-title">Lost In Descent</h4>
-              <p class="composition-artist">Jack Konijnendijk</p>
-            </div>
-            <div class="composition-controls">
-              <div class="composition-nav-group">
-                <button class="composition-nav composition-prev" aria-label="Previous track">⏮</button>
-                <button class="composition-play-btn" type="button">▶</button>
-                <button class="composition-nav composition-next" aria-label="Next track">⏭</button>
-              </div>
-              <a class="composition-link-btn" href="https://distrokid.com/hyperfollow/jackkonijnendijk/lost-in-descent-2" target="_blank" rel="noopener noreferrer" aria-label="Open current track">↗</a>
-            </div>
-            <audio class="composition-audio" preload="none"></audio>
-          </div>
-
-          <div class="composition-track-list" aria-label="Composition track list">
-            <h4 class="composition-track-list-title">Tracks</h4>
-          </div>
-        </div>
-      </div>
-      <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
-    </section>
-
-    <section class="section section-sound-design" id="sound-design-projects">
-      <div class="wrap">
-        <div class="sound-design-image-wrap">
-          <img src="images/Sound Design Updated 2.jpg" alt="Sound Design" class="sound-design-image">
-          <div class="sound-design-overlay">
-            <h2 class="intro-title">Sound Design</h2>
-          </div>
-          <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
-        </div>
-      </div>
-    </section>
-
-
-
-    <section class="section project-section sound-design-projects-list">
-      <div class="wrap">
-        <h3 class="second-intro-title">Sound Design Projects</h3>
-
-        <div class="project-video-wrap">
-          <button class="project-nav project-prev" aria-label="Previous video" data-prev-src="" data-prev-title="" data-prev-alt="" data-prev-desc="">&lt;</button>
-          <div class="project-video-frame">
-            <div class="project-video-title-wrap">
-              <h4 class="project-video-title">Alice</h4>
-            </div>
-            <div class="project-video-container" data-current="0">
-              <div class="project-media">
-                <iframe id="project-video" class="project-video" width="100%" height="400" src="" title="Project Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                <div class="project-caption">
-                  <div class="project-category">Alice</div>
-                  <div class="project-desc">Short Film — a brief description goes here.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="project-nav project-next" aria-label="Next video" data-next-src="" data-next-title="" data-next-alt="" data-next-desc="">&gt;</button>
-        </div>
-      </div>
-      <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
-    </section>
-
-    <section class="section section-sound-recording" id="sound-recording-projects">
-      <div class="wrap">
-        <div class="sound-design-image-wrap">
-          <img src="images/Sound Recording.jpg" alt="Sound Recording" class="sound-design-image">
-          <div class="sound-design-overlay">
-            <h2 class="intro-title">Sound Recording</h2>
-          </div>
-          <button class="scroll-indicator" aria-label="Scroll to next section"><span class="arrow" aria-hidden="true"></span></button>
-        </div>
-      </div>
-    </section>
-
-   <section class="section project-section" id="sound-recording-projects">
-      <div class="wrap">
-        <h3 class="second-intro-title">Sound Recording Projects</h3>
-
-        <div class="project-video-wrap">
-          <button class="project-nav project-prev" aria-label="Previous video" data-prev-src="" data-prev-title="" data-prev-alt="" data-prev-desc="">&lt;</button>
-          <div class="project-video-frame">
-            <div class="project-video-title-wrap">
-              <h4 class="project-video-title">Project Name</h4>
-            </div>
-             <div class="project-video-container" data-current="0">
-               <div class="project-media">
-                   <img class="project-poster" src="" alt="Project Poster" />
-                   <iframe id="recording-project-video" class="project-video" width="100%" height="400" src="" title="Recording Project Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                 <div class="project-caption">
-                  <div class="project-category">Recording Category</div>
-                  <div class="project-desc">Another project description goes here.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-           <button class="project-nav project-next" aria-label="Next video" data-next-src="" data-next-title="" data-next-alt="" data-next-desc="">&gt;</button>
-        </div>
-      </div>
-      <button class="scroll-indicator" data-target="about-me" aria-label="Scroll to about section"><span class="arrow" aria-hidden="true"></span></button>
-    </section>
-    
-    <section class="about-me">
-      <div class="wrap">
-        <div class="about-me-content">
-          <h3 class="second-intro-title">About</h3>
-          <p>Jack Konijnendijk (also known as AudioJack) is a passionate sound designer, composer,
-            and sound recorder with a love for creating immersive audio experiences.
-            With a focus on crafting futuristic and otherworldly sounds,
-            Jack utilizes synthesizers to bring unique auditory landscapes to life.
-            Whether it's for films or other media, Jack's work is dedicated to delivering captivating and innovative soundscapes
-            that enhance the overall experience. 
-          </p>
-          <p>Jack is currently in his second year of studying Film at the Dutch Filmers Academy, where he continues to hone his skills and expand his creative horizons.
-          </p>
-        </div>
-        <div class="about-me-image-container">
-          <div class="about-me-image">
-            <img src="images/AudioJack SoundDesign.jpg" alt="Jack On Demand - Sound Designer" class="active">
-            <img src="images/About Picture.jpg" alt="Jack On Demand - Sound Recorder">
-          </div>
-          <div class="about-me-role-toggle">
-            <button class="about-me-role-btn active" data-role="designer">Sound Designer</button>
-            <button class="about-me-role-btn" data-role="recorder">Sound Recorder</button>
-          </div>
-          <p class="about-me-role-text">Sound Designer</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section " id="contact-info">
-      <div class="wrap">
-        <h3>Contact Information</h3>
-        <ul>
-          <li><strong>Email:</strong> Jackondemand@outlook.com</li>
-          <li>
-          <strong>LinkedIn:</strong>
-          <a href="https://www.linkedin.com/in/jack-konijnendijk-73265a32b/" target="_blank">
-            Jack Konijnendijk
-          </a>
-        </li>
-          <li><strong>KvK:</strong> 96296909</li>
-          <li><strong>BTW:</strong> NL005203035B90</li>
-        </ul>
-      </div>
-    </section>
-    
     <footer class="footer">
       <p>© <span id="year"></span> Jack On Demand - Creating an otherworldly experience</p>
     </footer>
-  </main>
+    
 
   <script src="script.js" defer></script>
   
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
 
 
