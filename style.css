@@ -75,6 +75,10 @@ body.content-page::before {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.72)), var(--page-background, none);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   z-index: 0;
   pointer-events: none;
 }
@@ -716,7 +720,7 @@ body.content-page::before {
     grid-template-columns: 1fr;
   }
   .project-card {
-    min-height: 280px;
+    min-height: 0;
   }
   .project-dialog {
     padding: 0.75rem;
